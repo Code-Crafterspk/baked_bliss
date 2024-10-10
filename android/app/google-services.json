@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "700098793908",
+    "project_id": "baked-bliss",
+    "storage_bucket": "baked-bliss.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700098793908:android:5c409fd2da0cada8e6e2e1",
+        "android_client_info": {
+          "package_name": "com.example.baked_bliss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700098793908-fdtp1d74ivnk7vfpnqmb7smi52sjg1cb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.baked_bliss",
+            "certificate_hash": "4c40c17f8379861fcb18d752628ddea19489e6df"
+          }
+        },
+        {
+          "client_id": "700098793908-coct57el7vpl7blamqeqcchdkgodktq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAESlPb2s1n3RghUnQUWt1dNZwbiLmHVDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700098793908-coct57el7vpl7blamqeqcchdkgodktq0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700098793908-br7k2ai8o2nhqkp2n3ccnoi44bi3dq2r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bakedBliss"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
