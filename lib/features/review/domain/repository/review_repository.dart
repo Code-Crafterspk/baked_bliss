@@ -11,12 +11,12 @@ abstract interface class ReviewRepository {
   Future<Either<Failure, ApiResponse<List<ReviewModel>>>> getReviews(
     String productId, {
     int? limit,
-    int? page,
+    int? offset,
   });
   Future<Either<Failure, ApiResponse<List<ReviewModel>>>> getUserReviews(
     String userId, {
     int? limit,
-    int? page,
+    int? offset,
   });
   Future<Either<Failure, bool>> isReviewed(String productId, String userId);
 }

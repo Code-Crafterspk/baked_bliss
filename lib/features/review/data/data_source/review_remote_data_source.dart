@@ -7,9 +7,9 @@ import 'package:http/http.dart';
 
 abstract interface class ReviewRemoteDataSource {
   Future<ApiResponse<List<ReviewModel>>> getUserReviews(String userId,
-      {int? page, int? limit});
+      {int? offset, int? limit});
   Future<ApiResponse<List<ReviewModel>>> getReviews(String productId,
-      {int? page, int? limit});
+      {int? offset, int? limit});
   Future<bool> isReviewed(String productId, String userId);
   Future<bool> reviewAllowed(String productId, String userId);
   Future<void> addReview(ReviewModel review);
@@ -23,10 +23,10 @@ class ReviewRemoteDataSourceImp implements ReviewRemoteDataSource {
 
   ReviewRemoteDataSourceImp({required Client client}) : _client = client;
 
-  String handleParms(int? page, int? limit) {
+  String handleParms(int? offset, int? limit) {
     final queryParams = <String>[];
-    if (page != null) {
-      queryParams.add('page=$page');
+    if (offset != null) {
+      queryParams.add('offset=$offset');
     }
     if (limit != null) {
       queryParams.add('limit=$limit');
@@ -77,12 +77,12 @@ class ReviewRemoteDataSourceImp implements ReviewRemoteDataSource {
   @override
   Future<ApiResponse<List<ReviewModel>>> getReviews(
     String productId, {
-    int? page,
+    int? offset,
     int? limit,
   }) async {
     return await handleApiException(() async {
       final url =
-          '${baseUrl}reviews/product/$productId${handleParms(page, limit)}';
+          '${baseUrl}reviews/product/$productId${handleParms(offset, limit)}';
       final response = await _client.get(Uri.parse(url));
       final data = handleApiResponse(response);
       final jsonData = jsonDecode(data);
@@ -98,9 +98,9 @@ class ReviewRemoteDataSourceImp implements ReviewRemoteDataSource {
 
   @override
   Future<ApiResponse<List<ReviewModel>>> getUserReviews(String userId,
-      {int? page, int? limit}) async {
+      {int? offset, int? limit}) async {
     return await handleApiException(() async {
-      final url = '${baseUrl}reviews/user/$userId${handleParms(page, limit)}';
+      final url = '${baseUrl}reviews/user/$userId${handleParms(offset, limit)}';
       final response = await _client.get(Uri.parse(url));
       final data = handleApiResponse(response);
       final jsonData = jsonDecode(data);

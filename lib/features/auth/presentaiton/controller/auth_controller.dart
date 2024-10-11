@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:baked_bliss/common/loading/loading_screen.dart';
 import 'package:baked_bliss/common/usecase/usecase.dart';
 import 'package:baked_bliss/features/auth/domain/usecases/email_login.dart';
@@ -57,19 +59,26 @@ class AuthController extends GetxController {
 
   Future<void> googleLogin() async {
     _showLoading();
-    final result = await _googleLogin(NoParams());
-    result.fold(
-      (failure) {
-        if (kDebugMode) {
-          print(failure.message);
-        }
-      },
-      (authResponse) async {
-        await _showSuccess();
-        setAuthenticated(true);
-        Get.toNamed(AppRoutes.navigation);
-      },
-    );
+    await Future.delayed(const Duration(seconds: 2));
+    await _showSuccess();
+    await Future.delayed(const Duration(seconds: 5));
+    log('google login');
+    // final result = await _googleLogin(NoParams());
+    // log('google login result');
+    // print(result);
+    // log(result.toString());
+    // result.fold(
+    //   (failure) {
+    //     if (kDebugMode) {
+    //       print(failure.message);
+    //     }
+    //   },
+    //   (authResponse) async {
+    //     await _showSuccess();
+    //     setAuthenticated(true);
+    //     Get.toNamed(AppRoutes.navigation);
+    //   },
+    // );
     _hideLoading();
   }
 
@@ -185,6 +194,6 @@ class AuthController extends GetxController {
         title: 'Success',
         centerWidget:
             const Icon(Icons.check_circle, color: Colors.green, size: 50));
-    await Future.delayed(const Duration(seconds: 10));
+    await Future.delayed(const Duration(seconds: 2));
   }
 }

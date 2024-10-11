@@ -6,8 +6,8 @@ class UserTable extends Table {
   TextColumn get userId => text()();
   TextColumn get fullName => text().nullable()();
   TextColumn get email => text().nullable()();
-  TextColumn get profilePicture => text().nullable()();
-  TextColumn get phoneNumber => text().nullable()();
+  TextColumn get imageUrl => text().nullable()();
+  TextColumn get phoneNo => text().nullable()();
   DateTimeColumn get dateJoined => dateTime().nullable()();
   TextColumn get pushToken => text().nullable()();
   @override
@@ -57,7 +57,7 @@ class ProductTable extends Table {
 }
 
 @DataClassName('SettingEntity')
-class SettingTable extends Table {
+class PreferenceTable extends Table {
   TextColumn get key => text()();
   TextColumn get value => text()();
   @override

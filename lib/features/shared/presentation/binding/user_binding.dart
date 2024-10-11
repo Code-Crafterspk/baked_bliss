@@ -14,25 +14,25 @@ import 'package:get/get.dart';
 class UserBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<UserRemoteDataSourceImp>(() => UserRemoteDataSourceImp(
-          auth: Get.find(),
-          client: Get.find(),
-        ));
-    Get.lazyPut(() => UserLocalDataSourceImp(db: Get.find()));
+    Get.put<UserRemoteDataSourceImp>(UserRemoteDataSourceImp(
+      auth: Get.find(),
+      client: Get.find(),
+    ));
+    Get.put(UserLocalDataSourceImp(db: Get.find()));
 
-    Get.lazyPut<UserRepository>(() => UserRepositoryImp(
-          localDataSource: Get.find(),
-          networkInfo: Get.find(),
-          remoteDataSource: Get.find(),
-        ));
-    Get.lazyPut<UpdateUserUseCase>(() => UpdateUserUseCase(Get.find()));
-    Get.lazyPut<UpdateAddressUseCase>(() => UpdateAddressUseCase(Get.find()));
-    Get.lazyPut<GetAddressesUseCase>(() => GetAddressesUseCase(Get.find()));
-    Get.lazyPut<AddAddressUseCase>(() => AddAddressUseCase(Get.find()));
-    Get.lazyPut<RemoveAddressUseCase>(() => RemoveAddressUseCase(Get.find()));
-    Get.lazyPut<GetUserUseCase>(() => GetUserUseCase(Get.find()));
-    Get.lazyPut<UserController>(
-      () => UserController(
+    Get.put<UserRepository>(UserRepositoryImp(
+      localDataSource: Get.find(),
+      networkInfo: Get.find(),
+      remoteDataSource: Get.find(),
+    ));
+    Get.put<UpdateUserUseCase>(UpdateUserUseCase(Get.find()));
+    Get.put<UpdateAddressUseCase>(UpdateAddressUseCase(Get.find()));
+    Get.put<GetAddressesUseCase>(GetAddressesUseCase(Get.find()));
+    Get.put<AddAddressUseCase>(AddAddressUseCase(Get.find()));
+    Get.put<RemoveAddressUseCase>(RemoveAddressUseCase(Get.find()));
+    Get.put<GetUserUseCase>(GetUserUseCase(Get.find()));
+    Get.put<UserController>(
+      UserController(
         Get.find(),
         Get.find(),
         Get.find(),

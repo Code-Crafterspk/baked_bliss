@@ -36,11 +36,11 @@ class ReviewRepositoryImp implements ReviewRepository {
   Future<Either<Failure, ApiResponse<List<ReviewModel>>>> getReviews(
     String productId, {
     int? limit,
-    int? page,
+    int? offset,
   }) async {
     try {
       final reviews = await _reviewRemoteDataSource.getReviews(productId,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(reviews);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -51,11 +51,11 @@ class ReviewRepositoryImp implements ReviewRepository {
   Future<Either<Failure, ApiResponse<List<ReviewModel>>>> getUserReviews(
     String userId, {
     int? limit,
-    int? page,
+    int? offset,
   }) async {
     try {
       final reviews = await _reviewRemoteDataSource.getUserReviews(userId,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(reviews);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));

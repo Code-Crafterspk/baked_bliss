@@ -23,27 +23,14 @@ class ProfileBackground extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            IconButton(
-              onPressed: () {
-                Get.back();
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.white,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-            ),
-          ],
+        child: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Colors.white,
+          ),
         ),
       ),
     );

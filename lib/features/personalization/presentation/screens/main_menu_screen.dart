@@ -1,5 +1,4 @@
 import 'package:baked_bliss/assets/icons.dart';
-import 'package:baked_bliss/common/widgets/rounded_container.dart';
 import 'package:baked_bliss/features/personalization/presentation/widget/main_menu_tile.dart';
 import 'package:baked_bliss/gen/fonts.gen.dart';
 import 'package:baked_bliss/utils/constant/colors.dart';

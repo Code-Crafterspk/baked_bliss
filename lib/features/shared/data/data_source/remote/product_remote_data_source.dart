@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:baked_bliss/common/model/api/api_response.dart';
+import 'package:baked_bliss/common/model/category/category_model.dart';
 import 'package:baked_bliss/common/model/product/product_model.dart';
 import 'package:baked_bliss/features/shared/data/data_source/product_data_source.dart';
 import 'package:baked_bliss/utils/helper/functions.dart';
@@ -16,7 +17,7 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
     String endpoint, {
     String? userId,
     String? productId,
-    int? page,
+    int? offset,
     int? limit,
   }) async {
     return await handleApiException(() async {
@@ -30,8 +31,8 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
       if (productId != null) {
         queryParams.add('productId=$productId');
       }
-      if (page != null) {
-        queryParams.add('page=$page');
+      if (offset != null) {
+        queryParams.add('offset=$offset');
       }
       if (limit != null) {
         queryParams.add('limit=$limit');
@@ -58,37 +59,37 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
 
   @override
   Future<ApiResponse<List<ProductModel>>> getBestSellingProducts(
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await _fetchProducts('best-selling');
   }
 
   @override
   Future<ApiResponse<List<ProductModel>>> getNewArrivalProducts(
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await _fetchProducts('new-arrival');
   }
 
   @override
   Future<ApiResponse<List<ProductModel>>> getRecommendedProducts(String userId,
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await _fetchProducts('recommended', userId: userId);
   }
 
   @override
   Future<ApiResponse<List<ProductModel>>> getRelatedProducts(String productId,
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await _fetchProducts('related', productId: productId);
   }
 
   @override
   Future<ApiResponse<List<ProductModel>>> getTrendingProducts(
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await _fetchProducts('trending');
   }
 
   @override
   Future<ProductCatalogModel> getProductCatelog(String userId,
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await handleApiException(
       () async {
         final url = '${baseUrl}products/list/$userId';
@@ -108,7 +109,7 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
 
   @override
   Future<ApiResponse<List<ProductModel>>> getProductsByCategory(String category,
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     return await handleApiException(() async {
       final url = '${baseUrl}products/category/$category';
       final response = await _client.get(Uri.parse(url));
@@ -123,6 +124,32 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
           jsonData['pagination'],
         ),
       );
+    });
+  }
+
+  @override
+  Future<ApiResponse<CategoryModel>> getCategories() async {
+    return await handleApiException(() async {
+      final url = '${baseUrl}categories';
+      final response = await _client.get(Uri.parse(url));
+      final data = handleApiResponse(response);
+      final jsonData = jsonDecode(data);
+
+      return ApiResponse(
+        data: CategoryModel.fromJson(jsonData['data']),
+        pagination: Pagination.fromJson(jsonData['pagination']),
+      );
+    });
+  }
+
+  @override
+  Future<ProductModel> getProductDetail(String productId) async {
+    return await handleApiException(() async {
+      final url = '${baseUrl}products/$productId';
+      final response = await _client.get(Uri.parse(url));
+      final data = handleApiResponse(response);
+      final jsonData = jsonDecode(data);
+      return ProductModel.fromJson(jsonData['data']);
     });
   }
 }

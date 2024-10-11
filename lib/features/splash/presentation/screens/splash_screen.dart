@@ -5,19 +5,19 @@ import 'package:baked_bliss/utils/constant/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashScreen2 extends StatefulWidget {
-  const SplashScreen2({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashScreen2> createState() => _SplashScreen2State();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreen2State extends State<SplashScreen2> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final controller = Get.find<AuthController>();
-      Future.delayed(const Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 2), () {
         controller.userAuthenticated().then(
           (_) async {
             Get.offAllNamed(

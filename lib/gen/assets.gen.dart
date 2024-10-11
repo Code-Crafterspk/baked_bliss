@@ -59,6 +59,10 @@ class $AssetsIconsGen {
   AssetGenImage get facebook =>
       const AssetGenImage('assets/icons/facebook.png');
 
+  /// File path: assets/icons/facebook_negative.png
+  AssetGenImage get facebookNegative =>
+      const AssetGenImage('assets/icons/facebook_negative.png');
+
   /// File path: assets/icons/feedback.png
   AssetGenImage get feedback =>
       const AssetGenImage('assets/icons/feedback.png');
@@ -75,6 +79,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/instagram.png
   AssetGenImage get instagram =>
       const AssetGenImage('assets/icons/instagram.png');
+
+  /// File path: assets/icons/instagram_negative.png
+  AssetGenImage get instagramNegative =>
+      const AssetGenImage('assets/icons/instagram_negative.png');
 
   /// File path: assets/icons/like.png
   AssetGenImage get like => const AssetGenImage('assets/icons/like.png');
@@ -167,11 +175,13 @@ class $AssetsIconsGen {
         deliver,
         deliveryBoy,
         facebook,
+        facebookNegative,
         feedback,
         filter,
         google,
         info,
         instagram,
+        instagramNegative,
         like,
         location,
         lock,
@@ -326,7 +336,11 @@ class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const AssetGenImage image = AssetGenImage('assets/image.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  static List<AssetGenImage> get values => [image];
 }
 
 class AssetGenImage {

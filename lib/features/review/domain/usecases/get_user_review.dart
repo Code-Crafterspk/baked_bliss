@@ -15,15 +15,15 @@ class GetUserReviewUseCase
   Future<Either<Failure, ApiResponse<List<ReviewModel>>>> call(
       GetUserReviewParms params) async {
     return await reviewRepository.getUserReviews(params.userId,
-        page: params.page, limit: params.limit);
+        offset: params.offset, limit: params.limit);
   }
 }
 
 class GetUserReviewParms {
   final String userId;
-  final int? page;
+  final int? offset;
   final int? limit;
 
   GetUserReviewParms(
-      {required this.userId, required this.page, required this.limit});
+      {required this.userId, required this.offset, required this.limit});
 }

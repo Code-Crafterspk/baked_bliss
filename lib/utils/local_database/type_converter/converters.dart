@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:baked_bliss/common/model/address/address_model.dart';
 import 'package:baked_bliss/common/model/cart/cart_product_model.dart';
 import 'package:baked_bliss/common/model/category/category_model.dart';
 import 'package:baked_bliss/common/model/delivery/delivery_model.dart';

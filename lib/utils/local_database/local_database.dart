@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -34,7 +35,7 @@ LazyDatabase _openConnection() {
   UserTable,
   CartProductTable,
   CartTable,
-  SettingTable,
+  PreferenceTable,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -170,5 +171,55 @@ class AppDatabase extends _$AppDatabase {
             cartProductTable, CartProductEntity.fromJson(item.toJson()));
       }
     });
+  }
+
+  Future<List<String>> getSearchHistory() async {
+    final searchHistory = await (select(preferenceTable)
+          ..where((tbl) => tbl.key.equals('search_history')))
+        .getSingleOrNull();
+
+    return jsonDecode(searchHistory?.value ?? '[]');
+  }
+
+  Future<void> addSearchHistory(String query) async {
+    final searchHistory = await getSearchHistory();
+    final updatedSearchHistory = [...searchHistory, query];
+
+    if (searchHistory.isEmpty) {
+      await into(preferenceTable).insert(
+        PreferenceTableCompanion.insert(
+          key: 'search_history',
+          value: jsonEncode(updatedSearchHistory),
+        ),
+      );
+    } else {
+      await (update(preferenceTable)
+            ..where((tbl) => tbl.key.equals('search_history')))
+          .write(PreferenceTableCompanion.insert(
+        key: 'search_history',
+        value: jsonEncode(updatedSearchHistory),
+      ));
+    }
+  }
+
+  Future<void> removeSearchHistory(String query) async {
+    final searchHistory = await getSearchHistory();
+    final updatedSearchHistory =
+        searchHistory.where((e) => e != query).toList();
+    await (update(preferenceTable)
+          ..where((tbl) => tbl.key.equals('search_history')))
+        .write(PreferenceTableCompanion.insert(
+      key: 'search_history',
+      value: jsonEncode(updatedSearchHistory),
+    ));
+  }
+
+  Future<void> clearSearchHistory() async {
+    await (update(preferenceTable)
+          ..where((tbl) => tbl.key.equals('search_history')))
+        .write(PreferenceTableCompanion.insert(
+      key: 'search_history',
+      value: jsonEncode([]),
+    ));
   }
 }

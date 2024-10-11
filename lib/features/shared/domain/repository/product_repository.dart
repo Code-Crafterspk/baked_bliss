@@ -6,20 +6,20 @@ import 'package:fpdart/fpdart.dart';
 
 abstract interface class ProductRepository {
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getProductsByCategory(String category, {int? limit, int? page});
+      getProductsByCategory(String category, {int? limit, int? offset});
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> getRelatedProducts(
     String productId, {
     int? limit,
-    int? page,
+    int? offset,
   });
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getRecommendedProducts(String userId, {int? limit, int? page});
+      getRecommendedProducts(String userId, {int? limit, int? offset});
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> getTrendingProducts(
-      {int? limit, int? page});
+      {int? limit, int? offset});
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getNewArrivalProducts({int? limit, int? page});
+      getNewArrivalProducts({int? limit, int? offset});
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getBestSellingProducts({int? limit, int? page});
+      getBestSellingProducts({int? limit, int? offset});
   Future<Either<Failure, ProductCatalogModel>> getProductCatelog(String userId,
-      {int? limit, int? page});
+      {int? limit, int? offset});
 }

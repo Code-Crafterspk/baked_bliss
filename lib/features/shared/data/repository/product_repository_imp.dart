@@ -15,10 +15,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getBestSellingProducts({int? limit, int? page}) async {
+      getBestSellingProducts({int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getBestSellingProducts(
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -27,10 +27,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getNewArrivalProducts({int? limit, int? page}) async {
+      getNewArrivalProducts({int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getNewArrivalProducts(
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -39,10 +39,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ProductCatalogModel>> getProductCatelog(String userId,
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getProductCatelog(userId,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -51,10 +51,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getProductsByCategory(String category, {int? limit, int? page}) async {
+      getProductsByCategory(String category, {int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getProductsByCategory(category,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -63,10 +63,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ApiResponse<List<ProductModel>>>>
-      getRecommendedProducts(String userId, {int? limit, int? page}) async {
+      getRecommendedProducts(String userId, {int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getRecommendedProducts(userId,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -77,10 +77,10 @@ class ProductRepositoryImp implements ProductRepository {
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> getRelatedProducts(
       String productId,
       {int? limit,
-      int? page}) async {
+      int? offset}) async {
     try {
       final response = await _productDataSource.getRelatedProducts(productId,
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
@@ -89,10 +89,10 @@ class ProductRepositoryImp implements ProductRepository {
 
   @override
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> getTrendingProducts(
-      {int? limit, int? page}) async {
+      {int? limit, int? offset}) async {
     try {
       final response = await _productDataSource.getTrendingProducts(
-          limit: limit, page: page);
+          limit: limit, offset: offset);
       return right(response);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));

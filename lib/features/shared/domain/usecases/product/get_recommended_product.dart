@@ -16,6 +16,6 @@ class GetRecommendedProductUseCase
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> call(
       GetProductParm params) async {
     return _repository.getRecommendedProducts(params.userId!,
-        page: params.page, limit: params.limit);
+        offset: params.offset, limit: params.limit);
   }
 }

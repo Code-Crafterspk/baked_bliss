@@ -25,17 +25,17 @@ class $UserTableTable extends UserTable
   late final GeneratedColumn<String> email = GeneratedColumn<String>(
       'email', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _profilePictureMeta =
-      const VerificationMeta('profilePicture');
+  static const VerificationMeta _imageUrlMeta =
+      const VerificationMeta('imageUrl');
   @override
-  late final GeneratedColumn<String> profilePicture = GeneratedColumn<String>(
-      'profile_picture', aliasedName, true,
+  late final GeneratedColumn<String> imageUrl = GeneratedColumn<String>(
+      'image_url', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
-  static const VerificationMeta _phoneNumberMeta =
-      const VerificationMeta('phoneNumber');
+  static const VerificationMeta _phoneNoMeta =
+      const VerificationMeta('phoneNo');
   @override
-  late final GeneratedColumn<String> phoneNumber = GeneratedColumn<String>(
-      'phone_number', aliasedName, true,
+  late final GeneratedColumn<String> phoneNo = GeneratedColumn<String>(
+      'phone_no', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
   static const VerificationMeta _dateJoinedMeta =
       const VerificationMeta('dateJoined');
@@ -50,15 +50,8 @@ class $UserTableTable extends UserTable
       'push_token', aliasedName, true,
       type: DriftSqlType.string, requiredDuringInsert: false);
   @override
-  List<GeneratedColumn> get $columns => [
-        userId,
-        fullName,
-        email,
-        profilePicture,
-        phoneNumber,
-        dateJoined,
-        pushToken
-      ];
+  List<GeneratedColumn> get $columns =>
+      [userId, fullName, email, imageUrl, phoneNo, dateJoined, pushToken];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -83,17 +76,13 @@ class $UserTableTable extends UserTable
       context.handle(
           _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     }
-    if (data.containsKey('profile_picture')) {
-      context.handle(
-          _profilePictureMeta,
-          profilePicture.isAcceptableOrUnknown(
-              data['profile_picture']!, _profilePictureMeta));
+    if (data.containsKey('image_url')) {
+      context.handle(_imageUrlMeta,
+          imageUrl.isAcceptableOrUnknown(data['image_url']!, _imageUrlMeta));
     }
-    if (data.containsKey('phone_number')) {
-      context.handle(
-          _phoneNumberMeta,
-          phoneNumber.isAcceptableOrUnknown(
-              data['phone_number']!, _phoneNumberMeta));
+    if (data.containsKey('phone_no')) {
+      context.handle(_phoneNoMeta,
+          phoneNo.isAcceptableOrUnknown(data['phone_no']!, _phoneNoMeta));
     }
     if (data.containsKey('date_joined')) {
       context.handle(
@@ -120,10 +109,10 @@ class $UserTableTable extends UserTable
           .read(DriftSqlType.string, data['${effectivePrefix}full_name']),
       email: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}email']),
-      profilePicture: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}profile_picture']),
-      phoneNumber: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}phone_number']),
+      imageUrl: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}image_url']),
+      phoneNo: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}phone_no']),
       dateJoined: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}date_joined']),
       pushToken: attachedDatabase.typeMapping
@@ -141,16 +130,16 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
   final String userId;
   final String? fullName;
   final String? email;
-  final String? profilePicture;
-  final String? phoneNumber;
+  final String? imageUrl;
+  final String? phoneNo;
   final DateTime? dateJoined;
   final String? pushToken;
   const UserEntity(
       {required this.userId,
       this.fullName,
       this.email,
-      this.profilePicture,
-      this.phoneNumber,
+      this.imageUrl,
+      this.phoneNo,
       this.dateJoined,
       this.pushToken});
   @override
@@ -163,11 +152,11 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
     if (!nullToAbsent || email != null) {
       map['email'] = Variable<String>(email);
     }
-    if (!nullToAbsent || profilePicture != null) {
-      map['profile_picture'] = Variable<String>(profilePicture);
+    if (!nullToAbsent || imageUrl != null) {
+      map['image_url'] = Variable<String>(imageUrl);
     }
-    if (!nullToAbsent || phoneNumber != null) {
-      map['phone_number'] = Variable<String>(phoneNumber);
+    if (!nullToAbsent || phoneNo != null) {
+      map['phone_no'] = Variable<String>(phoneNo);
     }
     if (!nullToAbsent || dateJoined != null) {
       map['date_joined'] = Variable<DateTime>(dateJoined);
@@ -186,12 +175,12 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
           : Value(fullName),
       email:
           email == null && nullToAbsent ? const Value.absent() : Value(email),
-      profilePicture: profilePicture == null && nullToAbsent
+      imageUrl: imageUrl == null && nullToAbsent
           ? const Value.absent()
-          : Value(profilePicture),
-      phoneNumber: phoneNumber == null && nullToAbsent
+          : Value(imageUrl),
+      phoneNo: phoneNo == null && nullToAbsent
           ? const Value.absent()
-          : Value(phoneNumber),
+          : Value(phoneNo),
       dateJoined: dateJoined == null && nullToAbsent
           ? const Value.absent()
           : Value(dateJoined),
@@ -208,8 +197,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
       userId: serializer.fromJson<String>(json['userId']),
       fullName: serializer.fromJson<String?>(json['fullName']),
       email: serializer.fromJson<String?>(json['email']),
-      profilePicture: serializer.fromJson<String?>(json['profilePicture']),
-      phoneNumber: serializer.fromJson<String?>(json['phoneNumber']),
+      imageUrl: serializer.fromJson<String?>(json['imageUrl']),
+      phoneNo: serializer.fromJson<String?>(json['phoneNo']),
       dateJoined: serializer.fromJson<DateTime?>(json['dateJoined']),
       pushToken: serializer.fromJson<String?>(json['pushToken']),
     );
@@ -221,8 +210,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
       'userId': serializer.toJson<String>(userId),
       'fullName': serializer.toJson<String?>(fullName),
       'email': serializer.toJson<String?>(email),
-      'profilePicture': serializer.toJson<String?>(profilePicture),
-      'phoneNumber': serializer.toJson<String?>(phoneNumber),
+      'imageUrl': serializer.toJson<String?>(imageUrl),
+      'phoneNo': serializer.toJson<String?>(phoneNo),
       'dateJoined': serializer.toJson<DateTime?>(dateJoined),
       'pushToken': serializer.toJson<String?>(pushToken),
     };
@@ -232,17 +221,16 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
           {String? userId,
           Value<String?> fullName = const Value.absent(),
           Value<String?> email = const Value.absent(),
-          Value<String?> profilePicture = const Value.absent(),
-          Value<String?> phoneNumber = const Value.absent(),
+          Value<String?> imageUrl = const Value.absent(),
+          Value<String?> phoneNo = const Value.absent(),
           Value<DateTime?> dateJoined = const Value.absent(),
           Value<String?> pushToken = const Value.absent()}) =>
       UserEntity(
         userId: userId ?? this.userId,
         fullName: fullName.present ? fullName.value : this.fullName,
         email: email.present ? email.value : this.email,
-        profilePicture:
-            profilePicture.present ? profilePicture.value : this.profilePicture,
-        phoneNumber: phoneNumber.present ? phoneNumber.value : this.phoneNumber,
+        imageUrl: imageUrl.present ? imageUrl.value : this.imageUrl,
+        phoneNo: phoneNo.present ? phoneNo.value : this.phoneNo,
         dateJoined: dateJoined.present ? dateJoined.value : this.dateJoined,
         pushToken: pushToken.present ? pushToken.value : this.pushToken,
       );
@@ -251,11 +239,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
       userId: data.userId.present ? data.userId.value : this.userId,
       fullName: data.fullName.present ? data.fullName.value : this.fullName,
       email: data.email.present ? data.email.value : this.email,
-      profilePicture: data.profilePicture.present
-          ? data.profilePicture.value
-          : this.profilePicture,
-      phoneNumber:
-          data.phoneNumber.present ? data.phoneNumber.value : this.phoneNumber,
+      imageUrl: data.imageUrl.present ? data.imageUrl.value : this.imageUrl,
+      phoneNo: data.phoneNo.present ? data.phoneNo.value : this.phoneNo,
       dateJoined:
           data.dateJoined.present ? data.dateJoined.value : this.dateJoined,
       pushToken: data.pushToken.present ? data.pushToken.value : this.pushToken,
@@ -268,8 +253,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
           ..write('userId: $userId, ')
           ..write('fullName: $fullName, ')
           ..write('email: $email, ')
-          ..write('profilePicture: $profilePicture, ')
-          ..write('phoneNumber: $phoneNumber, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('phoneNo: $phoneNo, ')
           ..write('dateJoined: $dateJoined, ')
           ..write('pushToken: $pushToken')
           ..write(')'))
@@ -277,8 +262,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
   }
 
   @override
-  int get hashCode => Object.hash(userId, fullName, email, profilePicture,
-      phoneNumber, dateJoined, pushToken);
+  int get hashCode => Object.hash(
+      userId, fullName, email, imageUrl, phoneNo, dateJoined, pushToken);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -286,8 +271,8 @@ class UserEntity extends DataClass implements Insertable<UserEntity> {
           other.userId == this.userId &&
           other.fullName == this.fullName &&
           other.email == this.email &&
-          other.profilePicture == this.profilePicture &&
-          other.phoneNumber == this.phoneNumber &&
+          other.imageUrl == this.imageUrl &&
+          other.phoneNo == this.phoneNo &&
           other.dateJoined == this.dateJoined &&
           other.pushToken == this.pushToken);
 }
@@ -296,8 +281,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
   final Value<String> userId;
   final Value<String?> fullName;
   final Value<String?> email;
-  final Value<String?> profilePicture;
-  final Value<String?> phoneNumber;
+  final Value<String?> imageUrl;
+  final Value<String?> phoneNo;
   final Value<DateTime?> dateJoined;
   final Value<String?> pushToken;
   final Value<int> rowid;
@@ -305,8 +290,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
     this.userId = const Value.absent(),
     this.fullName = const Value.absent(),
     this.email = const Value.absent(),
-    this.profilePicture = const Value.absent(),
-    this.phoneNumber = const Value.absent(),
+    this.imageUrl = const Value.absent(),
+    this.phoneNo = const Value.absent(),
     this.dateJoined = const Value.absent(),
     this.pushToken = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -315,8 +300,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
     required String userId,
     this.fullName = const Value.absent(),
     this.email = const Value.absent(),
-    this.profilePicture = const Value.absent(),
-    this.phoneNumber = const Value.absent(),
+    this.imageUrl = const Value.absent(),
+    this.phoneNo = const Value.absent(),
     this.dateJoined = const Value.absent(),
     this.pushToken = const Value.absent(),
     this.rowid = const Value.absent(),
@@ -325,8 +310,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
     Expression<String>? userId,
     Expression<String>? fullName,
     Expression<String>? email,
-    Expression<String>? profilePicture,
-    Expression<String>? phoneNumber,
+    Expression<String>? imageUrl,
+    Expression<String>? phoneNo,
     Expression<DateTime>? dateJoined,
     Expression<String>? pushToken,
     Expression<int>? rowid,
@@ -335,8 +320,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
       if (userId != null) 'user_id': userId,
       if (fullName != null) 'full_name': fullName,
       if (email != null) 'email': email,
-      if (profilePicture != null) 'profile_picture': profilePicture,
-      if (phoneNumber != null) 'phone_number': phoneNumber,
+      if (imageUrl != null) 'image_url': imageUrl,
+      if (phoneNo != null) 'phone_no': phoneNo,
       if (dateJoined != null) 'date_joined': dateJoined,
       if (pushToken != null) 'push_token': pushToken,
       if (rowid != null) 'rowid': rowid,
@@ -347,8 +332,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
       {Value<String>? userId,
       Value<String?>? fullName,
       Value<String?>? email,
-      Value<String?>? profilePicture,
-      Value<String?>? phoneNumber,
+      Value<String?>? imageUrl,
+      Value<String?>? phoneNo,
       Value<DateTime?>? dateJoined,
       Value<String?>? pushToken,
       Value<int>? rowid}) {
@@ -356,8 +341,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
       userId: userId ?? this.userId,
       fullName: fullName ?? this.fullName,
       email: email ?? this.email,
-      profilePicture: profilePicture ?? this.profilePicture,
-      phoneNumber: phoneNumber ?? this.phoneNumber,
+      imageUrl: imageUrl ?? this.imageUrl,
+      phoneNo: phoneNo ?? this.phoneNo,
       dateJoined: dateJoined ?? this.dateJoined,
       pushToken: pushToken ?? this.pushToken,
       rowid: rowid ?? this.rowid,
@@ -376,11 +361,11 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
     if (email.present) {
       map['email'] = Variable<String>(email.value);
     }
-    if (profilePicture.present) {
-      map['profile_picture'] = Variable<String>(profilePicture.value);
+    if (imageUrl.present) {
+      map['image_url'] = Variable<String>(imageUrl.value);
     }
-    if (phoneNumber.present) {
-      map['phone_number'] = Variable<String>(phoneNumber.value);
+    if (phoneNo.present) {
+      map['phone_no'] = Variable<String>(phoneNo.value);
     }
     if (dateJoined.present) {
       map['date_joined'] = Variable<DateTime>(dateJoined.value);
@@ -400,8 +385,8 @@ class UserTableCompanion extends UpdateCompanion<UserEntity> {
           ..write('userId: $userId, ')
           ..write('fullName: $fullName, ')
           ..write('email: $email, ')
-          ..write('profilePicture: $profilePicture, ')
-          ..write('phoneNumber: $phoneNumber, ')
+          ..write('imageUrl: $imageUrl, ')
+          ..write('phoneNo: $phoneNo, ')
           ..write('dateJoined: $dateJoined, ')
           ..write('pushToken: $pushToken, ')
           ..write('rowid: $rowid')
@@ -3144,12 +3129,12 @@ class CartTableCompanion extends UpdateCompanion<CartEntity> {
   }
 }
 
-class $SettingTableTable extends SettingTable
-    with TableInfo<$SettingTableTable, SettingEntity> {
+class $PreferenceTableTable extends PreferenceTable
+    with TableInfo<$PreferenceTableTable, SettingEntity> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $SettingTableTable(this.attachedDatabase, [this._alias]);
+  $PreferenceTableTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _keyMeta = const VerificationMeta('key');
   @override
   late final GeneratedColumn<String> key = GeneratedColumn<String>(
@@ -3166,7 +3151,7 @@ class $SettingTableTable extends SettingTable
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'setting_table';
+  static const String $name = 'preference_table';
   @override
   VerificationContext validateIntegrity(Insertable<SettingEntity> instance,
       {bool isInserting = false}) {
@@ -3201,8 +3186,8 @@ class $SettingTableTable extends SettingTable
   }
 
   @override
-  $SettingTableTable createAlias(String alias) {
-    return $SettingTableTable(attachedDatabase, alias);
+  $PreferenceTableTable createAlias(String alias) {
+    return $PreferenceTableTable(attachedDatabase, alias);
   }
 }
 
@@ -3218,8 +3203,8 @@ class SettingEntity extends DataClass implements Insertable<SettingEntity> {
     return map;
   }
 
-  SettingTableCompanion toCompanion(bool nullToAbsent) {
-    return SettingTableCompanion(
+  PreferenceTableCompanion toCompanion(bool nullToAbsent) {
+    return PreferenceTableCompanion(
       key: Value(key),
       value: Value(value),
     );
@@ -3246,7 +3231,7 @@ class SettingEntity extends DataClass implements Insertable<SettingEntity> {
         key: key ?? this.key,
         value: value ?? this.value,
       );
-  SettingEntity copyWithCompanion(SettingTableCompanion data) {
+  SettingEntity copyWithCompanion(PreferenceTableCompanion data) {
     return SettingEntity(
       key: data.key.present ? data.key.value : this.key,
       value: data.value.present ? data.value.value : this.value,
@@ -3272,16 +3257,16 @@ class SettingEntity extends DataClass implements Insertable<SettingEntity> {
           other.value == this.value);
 }
 
-class SettingTableCompanion extends UpdateCompanion<SettingEntity> {
+class PreferenceTableCompanion extends UpdateCompanion<SettingEntity> {
   final Value<String> key;
   final Value<String> value;
   final Value<int> rowid;
-  const SettingTableCompanion({
+  const PreferenceTableCompanion({
     this.key = const Value.absent(),
     this.value = const Value.absent(),
     this.rowid = const Value.absent(),
   });
-  SettingTableCompanion.insert({
+  PreferenceTableCompanion.insert({
     required String key,
     required String value,
     this.rowid = const Value.absent(),
@@ -3299,9 +3284,9 @@ class SettingTableCompanion extends UpdateCompanion<SettingEntity> {
     });
   }
 
-  SettingTableCompanion copyWith(
+  PreferenceTableCompanion copyWith(
       {Value<String>? key, Value<String>? value, Value<int>? rowid}) {
-    return SettingTableCompanion(
+    return PreferenceTableCompanion(
       key: key ?? this.key,
       value: value ?? this.value,
       rowid: rowid ?? this.rowid,
@@ -3325,7 +3310,7 @@ class SettingTableCompanion extends UpdateCompanion<SettingEntity> {
 
   @override
   String toString() {
-    return (StringBuffer('SettingTableCompanion(')
+    return (StringBuffer('PreferenceTableCompanion(')
           ..write('key: $key, ')
           ..write('value: $value, ')
           ..write('rowid: $rowid')
@@ -3344,7 +3329,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $CartProductTableTable(this);
   late final $DiscountTableTable discountTable = $DiscountTableTable(this);
   late final $CartTableTable cartTable = $CartTableTable(this);
-  late final $SettingTableTable settingTable = $SettingTableTable(this);
+  late final $PreferenceTableTable preferenceTable =
+      $PreferenceTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -3356,7 +3342,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         cartProductTable,
         discountTable,
         cartTable,
-        settingTable
+        preferenceTable
       ];
 }
 
@@ -3364,8 +3350,8 @@ typedef $$UserTableTableCreateCompanionBuilder = UserTableCompanion Function({
   required String userId,
   Value<String?> fullName,
   Value<String?> email,
-  Value<String?> profilePicture,
-  Value<String?> phoneNumber,
+  Value<String?> imageUrl,
+  Value<String?> phoneNo,
   Value<DateTime?> dateJoined,
   Value<String?> pushToken,
   Value<int> rowid,
@@ -3374,8 +3360,8 @@ typedef $$UserTableTableUpdateCompanionBuilder = UserTableCompanion Function({
   Value<String> userId,
   Value<String?> fullName,
   Value<String?> email,
-  Value<String?> profilePicture,
-  Value<String?> phoneNumber,
+  Value<String?> imageUrl,
+  Value<String?> phoneNo,
   Value<DateTime?> dateJoined,
   Value<String?> pushToken,
   Value<int> rowid,
@@ -3419,13 +3405,13 @@ class $$UserTableTableFilterComposer
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<String> get profilePicture => $state.composableBuilder(
-      column: $state.table.profilePicture,
+  ColumnFilters<String> get imageUrl => $state.composableBuilder(
+      column: $state.table.imageUrl,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnFilters<String> get phoneNumber => $state.composableBuilder(
-      column: $state.table.phoneNumber,
+  ColumnFilters<String> get phoneNo => $state.composableBuilder(
+      column: $state.table.phoneNo,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
 
@@ -3471,13 +3457,13 @@ class $$UserTableTableOrderingComposer
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<String> get profilePicture => $state.composableBuilder(
-      column: $state.table.profilePicture,
+  ColumnOrderings<String> get imageUrl => $state.composableBuilder(
+      column: $state.table.imageUrl,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 
-  ColumnOrderings<String> get phoneNumber => $state.composableBuilder(
-      column: $state.table.phoneNumber,
+  ColumnOrderings<String> get phoneNo => $state.composableBuilder(
+      column: $state.table.phoneNo,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 
@@ -3515,8 +3501,8 @@ class $$UserTableTableTableManager extends RootTableManager<
             Value<String> userId = const Value.absent(),
             Value<String?> fullName = const Value.absent(),
             Value<String?> email = const Value.absent(),
-            Value<String?> profilePicture = const Value.absent(),
-            Value<String?> phoneNumber = const Value.absent(),
+            Value<String?> imageUrl = const Value.absent(),
+            Value<String?> phoneNo = const Value.absent(),
             Value<DateTime?> dateJoined = const Value.absent(),
             Value<String?> pushToken = const Value.absent(),
             Value<int> rowid = const Value.absent(),
@@ -3525,8 +3511,8 @@ class $$UserTableTableTableManager extends RootTableManager<
             userId: userId,
             fullName: fullName,
             email: email,
-            profilePicture: profilePicture,
-            phoneNumber: phoneNumber,
+            imageUrl: imageUrl,
+            phoneNo: phoneNo,
             dateJoined: dateJoined,
             pushToken: pushToken,
             rowid: rowid,
@@ -3535,8 +3521,8 @@ class $$UserTableTableTableManager extends RootTableManager<
             required String userId,
             Value<String?> fullName = const Value.absent(),
             Value<String?> email = const Value.absent(),
-            Value<String?> profilePicture = const Value.absent(),
-            Value<String?> phoneNumber = const Value.absent(),
+            Value<String?> imageUrl = const Value.absent(),
+            Value<String?> phoneNo = const Value.absent(),
             Value<DateTime?> dateJoined = const Value.absent(),
             Value<String?> pushToken = const Value.absent(),
             Value<int> rowid = const Value.absent(),
@@ -3545,8 +3531,8 @@ class $$UserTableTableTableManager extends RootTableManager<
             userId: userId,
             fullName: fullName,
             email: email,
-            profilePicture: profilePicture,
-            phoneNumber: phoneNumber,
+            imageUrl: imageUrl,
+            phoneNo: phoneNo,
             dateJoined: dateJoined,
             pushToken: pushToken,
             rowid: rowid,
@@ -5053,22 +5039,22 @@ typedef $$CartTableTableProcessedTableManager = ProcessedTableManager<
     (CartEntity, $$CartTableTableReferences),
     CartEntity,
     PrefetchHooks Function({bool user, bool appDiscount, bool sellerDiscount})>;
-typedef $$SettingTableTableCreateCompanionBuilder = SettingTableCompanion
+typedef $$PreferenceTableTableCreateCompanionBuilder = PreferenceTableCompanion
     Function({
   required String key,
   required String value,
   Value<int> rowid,
 });
-typedef $$SettingTableTableUpdateCompanionBuilder = SettingTableCompanion
+typedef $$PreferenceTableTableUpdateCompanionBuilder = PreferenceTableCompanion
     Function({
   Value<String> key,
   Value<String> value,
   Value<int> rowid,
 });
 
-class $$SettingTableTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $SettingTableTable> {
-  $$SettingTableTableFilterComposer(super.$state);
+class $$PreferenceTableTableFilterComposer
+    extends FilterComposer<_$AppDatabase, $PreferenceTableTable> {
+  $$PreferenceTableTableFilterComposer(super.$state);
   ColumnFilters<String> get key => $state.composableBuilder(
       column: $state.table.key,
       builder: (column, joinBuilders) =>
@@ -5080,9 +5066,9 @@ class $$SettingTableTableFilterComposer
           ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
-class $$SettingTableTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $SettingTableTable> {
-  $$SettingTableTableOrderingComposer(super.$state);
+class $$PreferenceTableTableOrderingComposer
+    extends OrderingComposer<_$AppDatabase, $PreferenceTableTable> {
+  $$PreferenceTableTableOrderingComposer(super.$state);
   ColumnOrderings<String> get key => $state.composableBuilder(
       column: $state.table.key,
       builder: (column, joinBuilders) =>
@@ -5094,34 +5080,35 @@ class $$SettingTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class $$SettingTableTableTableManager extends RootTableManager<
+class $$PreferenceTableTableTableManager extends RootTableManager<
     _$AppDatabase,
-    $SettingTableTable,
+    $PreferenceTableTable,
     SettingEntity,
-    $$SettingTableTableFilterComposer,
-    $$SettingTableTableOrderingComposer,
-    $$SettingTableTableCreateCompanionBuilder,
-    $$SettingTableTableUpdateCompanionBuilder,
+    $$PreferenceTableTableFilterComposer,
+    $$PreferenceTableTableOrderingComposer,
+    $$PreferenceTableTableCreateCompanionBuilder,
+    $$PreferenceTableTableUpdateCompanionBuilder,
     (
       SettingEntity,
-      BaseReferences<_$AppDatabase, $SettingTableTable, SettingEntity>
+      BaseReferences<_$AppDatabase, $PreferenceTableTable, SettingEntity>
     ),
     SettingEntity,
     PrefetchHooks Function()> {
-  $$SettingTableTableTableManager(_$AppDatabase db, $SettingTableTable table)
+  $$PreferenceTableTableTableManager(
+      _$AppDatabase db, $PreferenceTableTable table)
       : super(TableManagerState(
           db: db,
           table: table,
           filteringComposer:
-              $$SettingTableTableFilterComposer(ComposerState(db, table)),
+              $$PreferenceTableTableFilterComposer(ComposerState(db, table)),
           orderingComposer:
-              $$SettingTableTableOrderingComposer(ComposerState(db, table)),
+              $$PreferenceTableTableOrderingComposer(ComposerState(db, table)),
           updateCompanionCallback: ({
             Value<String> key = const Value.absent(),
             Value<String> value = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
-              SettingTableCompanion(
+              PreferenceTableCompanion(
             key: key,
             value: value,
             rowid: rowid,
@@ -5131,7 +5118,7 @@ class $$SettingTableTableTableManager extends RootTableManager<
             required String value,
             Value<int> rowid = const Value.absent(),
           }) =>
-              SettingTableCompanion.insert(
+              PreferenceTableCompanion.insert(
             key: key,
             value: value,
             rowid: rowid,
@@ -5143,17 +5130,17 @@ class $$SettingTableTableTableManager extends RootTableManager<
         ));
 }
 
-typedef $$SettingTableTableProcessedTableManager = ProcessedTableManager<
+typedef $$PreferenceTableTableProcessedTableManager = ProcessedTableManager<
     _$AppDatabase,
-    $SettingTableTable,
+    $PreferenceTableTable,
     SettingEntity,
-    $$SettingTableTableFilterComposer,
-    $$SettingTableTableOrderingComposer,
-    $$SettingTableTableCreateCompanionBuilder,
-    $$SettingTableTableUpdateCompanionBuilder,
+    $$PreferenceTableTableFilterComposer,
+    $$PreferenceTableTableOrderingComposer,
+    $$PreferenceTableTableCreateCompanionBuilder,
+    $$PreferenceTableTableUpdateCompanionBuilder,
     (
       SettingEntity,
-      BaseReferences<_$AppDatabase, $SettingTableTable, SettingEntity>
+      BaseReferences<_$AppDatabase, $PreferenceTableTable, SettingEntity>
     ),
     SettingEntity,
     PrefetchHooks Function()>;
@@ -5173,6 +5160,6 @@ class $AppDatabaseManager {
       $$DiscountTableTableTableManager(_db, _db.discountTable);
   $$CartTableTableTableManager get cartTable =>
       $$CartTableTableTableManager(_db, _db.cartTable);
-  $$SettingTableTableTableManager get settingTable =>
-      $$SettingTableTableTableManager(_db, _db.settingTable);
+  $$PreferenceTableTableTableManager get preferenceTable =>
+      $$PreferenceTableTableTableManager(_db, _db.preferenceTable);
 }

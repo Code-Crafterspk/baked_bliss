@@ -70,6 +70,6 @@ Future<T> handleLocalDatabaseException<T>(Future<T> Function() action) async {
   try {
     return await action();
   } catch (e) {
-    throw DatabaseException(message: 'Unknown error');
+    throw ServerException(message: 'Unknown error', errorCode: 'unknown');
   }
 }

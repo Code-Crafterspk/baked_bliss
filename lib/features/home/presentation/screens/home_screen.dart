@@ -2,12 +2,12 @@ import 'package:baked_bliss/assets/images.dart';
 import 'package:baked_bliss/common/model/category/category_model.dart';
 import 'package:baked_bliss/common/model/ingredient/ingredient_model.dart';
 import 'package:baked_bliss/common/model/product/product_model.dart';
-import 'package:baked_bliss/common/widgets/bottom_navigation.dart';
 import 'package:baked_bliss/features/home/presentation/widget/category_builder.dart';
 import 'package:baked_bliss/features/home/presentation/widget/home_header.dart';
 import 'package:baked_bliss/features/home/presentation/widget/offer_builder.dart';
 import 'package:baked_bliss/features/home/presentation/widget/product_builder.dart';
 import 'package:baked_bliss/features/home/presentation/widget/search_field.dart';
+import 'package:baked_bliss/features/personalization/presentation/screens/main_menu_screen.dart';
 import 'package:baked_bliss/utils/constant/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +18,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      drawer: const Drawer(
+        child: MainMenuScreen(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

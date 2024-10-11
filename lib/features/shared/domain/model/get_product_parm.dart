@@ -5,14 +5,14 @@ class GetProductParm extends Equatable {
   final String? productId;
   final String? userId;
   final int? limit;
-  final int? page;
+  final int? offset;
 
   const GetProductParm({
     required this.category,
     required this.productId,
     required this.userId,
     required this.limit,
-    required this.page,
+    required this.offset,
   });
 
   @override
@@ -21,6 +21,6 @@ class GetProductParm extends Equatable {
         productId,
         userId,
         limit,
-        page,
+        offset,
       ];
 }

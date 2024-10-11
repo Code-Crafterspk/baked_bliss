@@ -6,6 +6,7 @@ import 'package:baked_bliss/utils/local_database/local_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract interface class AuthLocalDataSource {
+  Future<void> createUser(UserModel user);
   Future<void> clearUser();
 }
 
@@ -29,6 +30,13 @@ class AuthLocalDataSourceImp implements AuthLocalDataSource {
   Future<void> clearUser() async {
     return await _handleException(() {
       return _db.clearUserData();
+    });
+  }
+
+  @override
+  Future<void> createUser(UserModel user) async {
+    return await _handleException(() async {
+      await _db.createUser(user);
     });
   }
 }

@@ -33,7 +33,11 @@ class HomeHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                RoundedButton(icon: AssetsIcons.menu, onPressed: () {}),
+                RoundedButton(
+                    icon: AssetsIcons.menu,
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    }),
                 RoundedButton(icon: AssetsIcons.notification, onPressed: () {}),
               ],
             ),
@@ -56,8 +60,6 @@ class HomeHeader extends StatelessWidget {
                     ),
                     const Positioned(
                         bottom: 20,
-                        left: 20,
-                        right: 20,
                         child: Text('Baked Bliss', style: playfairDisplay)),
                   ],
                 ),

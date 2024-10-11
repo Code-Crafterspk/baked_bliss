@@ -1,3 +1,4 @@
+import 'package:baked_bliss/features/auth/presentaiton/bindings/auth_binding.dart';
 import 'package:baked_bliss/utils/helper/network_info.dart';
 import 'package:baked_bliss/utils/local_database/local_database.dart';
 import 'package:baked_bliss/utils/notification/fcm_notification.dart';
@@ -11,12 +12,13 @@ class InitialBinding extends Bindings {
   @override
   void dependencies() {
     Get
-      ..lazyPut(() => FcmNotification())
-      ..lazyPut(() => Client())
-      ..lazyPut(() => NetworkInfo())
-      ..lazyPut(() => FirebaseAuth.instance)
-      ..lazyPut(() => GoogleSignIn())
-      ..lazyPut(() => FacebookAuth.instance)
-      ..lazyPut(() => AppDatabase());
+      ..put(FcmNotification())
+      ..put(Client())
+      ..put(NetworkInfo())
+      ..put(FirebaseAuth.instance)
+      ..put(GoogleSignIn())
+      ..put(FacebookAuth.instance)
+      ..put(AppDatabase());
+    AuthBinding().dependencies();
   }
 }

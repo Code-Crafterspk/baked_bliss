@@ -15,36 +15,36 @@ class AuthBinding extends Bindings {
   @override
   void dependencies() {
     Get
-          ..lazyPut<AuthRemoteDataSource>(() => AuthRemoteDataSourceImp(
-                Get.find(),
-                Get.find(),
-                Get.find(),
-                Get.find(),
-                Get.find(),
-              ))
-          ..lazyPut<AuthLocalDataSource>(() => AuthLocalDataSourceImp(
-                Get.find(),
-                Get.find(),
-              ))
-          ..lazyPut<AuthRepository>(() => AuthRepositoryImp(
-                Get.find(),
-                Get.find(),
-                Get.find(),
-              ))
-          ..lazyPut(() => GoogleLoginUseCase(Get.find()))
-          ..lazyPut(() => FacebookLoginUseCase(Get.find()))
-          ..lazyPut(() => EmailLoginUseCase(Get.find()))
-          ..lazyPut(() => EmailSignupUseCase(Get.find()))
-          ..lazyPut(() => SignOutUseCase(Get.find()))
-          ..lazyPut(() => UserAuthenticatedUseCase(Get.find()))
-          ..lazyPut(() => AuthController(
-                Get.find(),
-                Get.find(),
-                Get.find(),
-                Get.find(),
-                Get.find(),
-                Get.find(),
-              ))
+          ..put<AuthRemoteDataSource>(AuthRemoteDataSourceImp(
+            Get.find(),
+            Get.find(),
+            Get.find(),
+            Get.find(),
+            Get.find(),
+          ))
+          ..put<AuthLocalDataSource>(AuthLocalDataSourceImp(
+            Get.find(),
+            Get.find(),
+          ))
+          ..put<AuthRepository>(AuthRepositoryImp(
+            Get.find(),
+            Get.find(),
+            Get.find(),
+          ))
+          ..put(GoogleLoginUseCase(Get.find()))
+          ..put(FacebookLoginUseCase(Get.find()))
+          ..put(EmailLoginUseCase(Get.find()))
+          ..put(EmailSignupUseCase(Get.find()))
+          ..put(SignOutUseCase(Get.find()))
+          ..put(UserAuthenticatedUseCase(Get.find()))
+          ..put(AuthController(
+            Get.find(),
+            Get.find(),
+            Get.find(),
+            Get.find(),
+            Get.find(),
+            Get.find(),
+          ))
         //
         ;
   }

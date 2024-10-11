@@ -171,13 +171,13 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
       final firebaseCredential =
           await _firebaseAuth.signInWithCredential(credential);
       final firebaseUser = firebaseCredential.user!;
-      await _socialSignIn(UserModel(
-        email: firebaseUser.email,
-        fullName: firebaseUser.displayName ?? '',
-        userId: firebaseUser.uid,
-        imageUrl: firebaseUser.photoURL,
-        pushToken: _fcmNotification.getToken(),
-      ));
+      // await _socialSignIn(UserModel(
+      //   email: firebaseUser.email,
+      //   fullName: firebaseUser.displayName ?? '',
+      //   userId: firebaseUser.uid,
+      //   imageUrl: firebaseUser.photoURL,
+      //   pushToken: _fcmNotification.getToken(),
+      // ));
       return _response(AuthMode.google);
     });
   }

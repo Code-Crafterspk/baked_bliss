@@ -15,7 +15,7 @@ import 'package:baked_bliss/features/search/presentation/screens/search_screen.d
 import 'package:baked_bliss/features/shared/presentation/binding/navigation_binding.dart';
 import 'package:baked_bliss/features/shared/presentation/binding/user_binding.dart';
 import 'package:baked_bliss/features/shared/presentation/screens/navigation_menu.dart';
-import 'package:baked_bliss/features/splash/presentation/screens/splash_screen2.dart';
+import 'package:baked_bliss/features/splash/presentation/screens/splash_screen.dart';
 import 'package:baked_bliss/utils/constant/app_routes.dart';
 import 'package:get/get.dart';
 
@@ -25,8 +25,7 @@ abstract class Routing {
   static var getPages = [
     GetPage(
       name: AppRoutes.splash,
-      page: () => const SplashScreen2(),
-      binding: AuthBinding(),
+      page: () => const SplashScreen(),
     ),
     GetPage(
       name: AppRoutes.welcome,

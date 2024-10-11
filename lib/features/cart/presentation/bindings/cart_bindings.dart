@@ -13,24 +13,24 @@ class CartBinding extends Bindings {
   @override
   void dependencies() {
     Get
-      ..lazyPut<CartRemoteDataSourceImp>(() => CartRemoteDataSourceImp(
-            auth: Get.find(),
-            client: Get.find(),
-          ))
-      ..lazyPut(() => CartLocalDataSourceImp(
-            db: Get.find(),
-          ))
-      ..lazyPut<CartRepository>(() => CartRepositoryImp(
-            Get.find(),
-            Get.find(),
-            Get.find(),
-          ))
-      ..lazyPut(() => AddToCartUseCase(Get.find()))
-      ..lazyPut(() => RemoveFromCartUseCase(Get.find()))
-      ..lazyPut(() => GetCartUseCase(Get.find()))
-      ..lazyPut(() => UpdateCartUseCase(Get.find()))
-      ..lazyPut<CartController>(
-        () => CartController(
+      ..put<CartRemoteDataSourceImp>(CartRemoteDataSourceImp(
+        auth: Get.find(),
+        client: Get.find(),
+      ))
+      ..put(CartLocalDataSourceImp(
+        db: Get.find(),
+      ))
+      ..put<CartRepository>(CartRepositoryImp(
+        Get.find(),
+        Get.find(),
+        Get.find(),
+      ))
+      ..put(AddToCartUseCase(Get.find()))
+      ..put(RemoveFromCartUseCase(Get.find()))
+      ..put(GetCartUseCase(Get.find()))
+      ..put(UpdateCartUseCase(Get.find()))
+      ..put<CartController>(
+        CartController(
           Get.find(),
           Get.find(),
           Get.find(),

@@ -16,6 +16,6 @@ class GetBestSellingProductUseCase
   Future<Either<Failure, ApiResponse<List<ProductModel>>>> call(
       GetProductParm params) async {
     return _repository.getBestSellingProducts(
-        page: params.page, limit: params.limit);
+        offset: params.offset, limit: params.limit);
   }
 }
