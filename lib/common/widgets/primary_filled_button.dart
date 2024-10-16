@@ -36,7 +36,7 @@ class PrimaryFilledButton extends StatelessWidget {
     required String title,
     VoidCallback? onPressed,
     required Color backgroundColor,
-    Color? textColor,
+    TextStyle? textStyle,
     double? width,
     double? height,
     double? borderRadius,
@@ -49,11 +49,12 @@ class PrimaryFilledButton extends StatelessWidget {
       height: height,
       child: Text(
         title,
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: textColor ?? Colors.white,
-        ),
+        style: textStyle ??
+            const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
       ),
     );
   }
@@ -65,7 +66,7 @@ class PrimaryFilledButton extends StatelessWidget {
     required Widget icon,
     double? width,
     double? height,
-    Color? textColor,
+    TextStyle? textStyle,
     double? borderRadius,
   }) {
     return PrimaryFilledButton._(
@@ -81,11 +82,12 @@ class PrimaryFilledButton extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: textColor ?? Colors.white,
-            ),
+            style: textStyle ??
+                const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                ),
           ),
         ],
       ),

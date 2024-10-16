@@ -8,24 +8,52 @@ part of 'review_model.dart';
 
 _$ReviewModelImpl _$$ReviewModelImplFromJson(Map<String, dynamic> json) =>
     _$ReviewModelImpl(
-      reviewId: json['reviewId'] as String,
-      userId: json['userId'] as String,
+      avatar: json['avatar'] as String,
+      boughtDate: json['boughtDate'] as String,
+      buyerId: (json['buyerId'] as num).toInt(),
+      buyerName: json['buyerName'] as String,
+      canEdit: json['canEdit'] as bool,
+      configSku: json['configSku'] as String,
+      images:
+          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
+      isBuyerShowEnabled: json['isBuyerShowEnabled'] as bool,
       productId: json['productId'] as String,
+      productImg: json['productImg'] as String,
+      productName: json['productName'] as String,
+      mediaImg:
+          (json['mediaImg'] as List<dynamic>).map((e) => e as String).toList(),
       rating: (json['rating'] as num).toInt(),
-      comment: json['comment'] as String,
-      reviewDate: DateTime.parse(json['reviewDate'] as String),
-      replies: (json['replies'] as List<dynamic>?)
-          ?.map((e) => ReplyModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      replies: json['replies'] as List<dynamic>,
+      reviewContent: json['reviewContent'] as String,
+      reviewId: (json['reviewId'] as num).toInt(),
+      reviewStatus: json['reviewStatus'] as String,
+      reviewTime: DateTime.parse(json['reviewTime'] as String),
+      sellerId: (json['sellerId'] as num).toInt(),
+      showUploader: json['showUploader'] as bool,
+      skuId: json['skuId'] as String,
     );
 
 Map<String, dynamic> _$$ReviewModelImplToJson(_$ReviewModelImpl instance) =>
     <String, dynamic>{
-      'reviewId': instance.reviewId,
-      'userId': instance.userId,
+      'avatar': instance.avatar,
+      'boughtDate': instance.boughtDate,
+      'buyerId': instance.buyerId,
+      'buyerName': instance.buyerName,
+      'canEdit': instance.canEdit,
+      'configSku': instance.configSku,
+      'images': instance.images,
+      'isBuyerShowEnabled': instance.isBuyerShowEnabled,
       'productId': instance.productId,
+      'productImg': instance.productImg,
+      'productName': instance.productName,
+      'mediaImg': instance.mediaImg,
       'rating': instance.rating,
-      'comment': instance.comment,
-      'reviewDate': instance.reviewDate.toIso8601String(),
       'replies': instance.replies,
+      'reviewContent': instance.reviewContent,
+      'reviewId': instance.reviewId,
+      'reviewStatus': instance.reviewStatus,
+      'reviewTime': instance.reviewTime.toIso8601String(),
+      'sellerId': instance.sellerId,
+      'showUploader': instance.showUploader,
+      'skuId': instance.skuId,
     };

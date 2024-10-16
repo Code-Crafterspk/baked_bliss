@@ -49,7 +49,7 @@ class CartRepositoryImp implements CartRepository {
 
   @override
   Future<Either<Failure, void>> removeProductFromCart(
-      CartProductModel cartProduct,
+      List<CartProductModel> cartProduct,
       {required String userId}) async {
     try {
       if (!_networkInfo.isConnected) {
@@ -74,6 +74,20 @@ class CartRepositoryImp implements CartRepository {
       await _remoteDataSource.updateProductInCart(cartProduct, userId: userId);
       await _localDataSource.updateProductInCart(cartProduct, userId: userId);
       return right(null);
+    } on ServerException catch (e) {
+      return left(Failure(message: e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getCartCount(String userId) async {
+    try {
+      if (!_networkInfo.isConnected) {
+        final count = await _localDataSource.getCartCount(userId);
+        return right(count);
+      }
+      final count = await _remoteDataSource.getCartCount(userId);
+      return right(count);
     } on ServerException catch (e) {
       return left(Failure(message: e.message));
     }

@@ -8,9 +8,11 @@ import 'package:baked_bliss/common/model/cart/cart_product_model.dart';
 import 'package:baked_bliss/common/model/category/category_model.dart';
 import 'package:baked_bliss/common/model/delivery/delivery_model.dart';
 import 'package:baked_bliss/common/model/ingredient/ingredient_model.dart';
+import 'package:baked_bliss/common/model/order_product/order_model.dart';
 import 'package:baked_bliss/common/model/product/variation_model.dart';
 import 'package:baked_bliss/common/model/promotion/promotion_model.dart';
 import 'package:baked_bliss/common/model/user/user_model.dart';
+import 'package:baked_bliss/utils/enums/enums.dart';
 import 'package:baked_bliss/utils/local_database/table/table.dart';
 import 'package:baked_bliss/utils/local_database/type_converter/converters.dart';
 import 'package:drift/drift.dart';
@@ -36,6 +38,8 @@ LazyDatabase _openConnection() {
   CartProductTable,
   CartTable,
   PreferenceTable,
+  OrderTable,
+  CategoryTable,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -122,9 +126,11 @@ class AppDatabase extends _$AppDatabase {
     return cartProductModel;
   }
 
-  Future<void> removeProductFromCart(CartProductModel cartProductModel) async {
+  Future<void> removeProductFromCart(
+      List<CartProductModel> cartProductModel) async {
     await (delete(cartProductTable)
-          ..where((tbl) => tbl.cartId.equals(cartProductModel.cartId)))
+          ..where(
+              (tbl) => tbl.cartId.isIn(cartProductModel.map((e) => e.cartId))))
         .go();
   }
 
@@ -221,5 +227,47 @@ class AppDatabase extends _$AppDatabase {
       key: 'search_history',
       value: jsonEncode([]),
     ));
+  }
+
+  Future<void> cancelOrder(OrderModel order) async {
+    await (update(orderTable)
+          ..where((tbl) => tbl.orderId.equals(order.orderId)))
+        .write(OrderEntity.fromJson(order.toJson()));
+  }
+
+  Future<OrderModel> getOrder(String orderId) async {
+    final orderEntity = await (select(orderTable)
+          ..where((tbl) => tbl.orderId.equals(orderId)))
+        .getSingle();
+    return OrderModel.fromJson(orderEntity.toJson());
+  }
+
+  Future<void> placeOrder(OrderModel order) async {
+    await into(orderTable).insert(OrderEntity.fromJson(order.toJson()));
+  }
+
+  Future<List<OrderModel>> getOrders() async {
+    final orderEntities = await select(orderTable).get();
+    return orderEntities.map((e) => OrderModel.fromJson(e.toJson())).toList();
+  }
+
+  Future<void> saveOrders(List<OrderModel> list) async {
+    await batch((batch) {
+      for (final order in list) {
+        batch.insert(orderTable, OrderEntity.fromJson(order.toJson()));
+      }
+    });
+  }
+
+  Future<List<CategoryModel>> getCategories({int? limit, int? offset}) async {
+    final categoryEntities = await (select(categoryTable)
+          ..limit(
+            limit ?? 20,
+            offset: offset,
+          ))
+        .get();
+    return categoryEntities
+        .map((e) => CategoryModel.fromJson(e.toJson()))
+        .toList();
   }
 }

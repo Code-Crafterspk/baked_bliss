@@ -21,7 +21,7 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OrderModel {
   String get orderId => throw _privateConstructorUsedError;
-  UserModel get user => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
   List<CartProductModel> get products => throw _privateConstructorUsedError;
   double get totalAmount => throw _privateConstructorUsedError;
   DeliveryModel get deliveryDetails => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $OrderModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String orderId,
-      UserModel user,
+      String userId,
       List<CartProductModel> products,
       double totalAmount,
       DeliveryModel deliveryDetails,
@@ -55,7 +55,6 @@ abstract class $OrderModelCopyWith<$Res> {
       DateTime orderTime,
       DateTime estimatedDeliveryTime});
 
-  $UserModelCopyWith<$Res> get user;
   $DeliveryModelCopyWith<$Res> get deliveryDetails;
 }
 
@@ -75,7 +74,7 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   @override
   $Res call({
     Object? orderId = null,
-    Object? user = null,
+    Object? userId = null,
     Object? products = null,
     Object? totalAmount = null,
     Object? deliveryDetails = null,
@@ -88,10 +87,10 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -123,16 +122,6 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get user {
-    return $UserModelCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value) as $Val);
-    });
-  }
-
-  /// Create a copy of OrderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
   $DeliveryModelCopyWith<$Res> get deliveryDetails {
     return $DeliveryModelCopyWith<$Res>(_value.deliveryDetails, (value) {
       return _then(_value.copyWith(deliveryDetails: value) as $Val);
@@ -150,7 +139,7 @@ abstract class _$$OrderModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String orderId,
-      UserModel user,
+      String userId,
       List<CartProductModel> products,
       double totalAmount,
       DeliveryModel deliveryDetails,
@@ -158,8 +147,6 @@ abstract class _$$OrderModelImplCopyWith<$Res>
       DateTime orderTime,
       DateTime estimatedDeliveryTime});
 
-  @override
-  $UserModelCopyWith<$Res> get user;
   @override
   $DeliveryModelCopyWith<$Res> get deliveryDetails;
 }
@@ -178,7 +165,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? orderId = null,
-    Object? user = null,
+    Object? userId = null,
     Object? products = null,
     Object? totalAmount = null,
     Object? deliveryDetails = null,
@@ -191,10 +178,10 @@ class __$$OrderModelImplCopyWithImpl<$Res>
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
               as String,
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -228,7 +215,7 @@ class __$$OrderModelImplCopyWithImpl<$Res>
 class _$OrderModelImpl implements _OrderModel {
   _$OrderModelImpl(
       {required this.orderId,
-      required this.user,
+      required this.userId,
       required final List<CartProductModel> products,
       required this.totalAmount,
       required this.deliveryDetails,
@@ -243,7 +230,7 @@ class _$OrderModelImpl implements _OrderModel {
   @override
   final String orderId;
   @override
-  final UserModel user;
+  final String userId;
   final List<CartProductModel> _products;
   @override
   List<CartProductModel> get products {
@@ -265,7 +252,7 @@ class _$OrderModelImpl implements _OrderModel {
 
   @override
   String toString() {
-    return 'OrderModel(orderId: $orderId, user: $user, products: $products, totalAmount: $totalAmount, deliveryDetails: $deliveryDetails, status: $status, orderTime: $orderTime, estimatedDeliveryTime: $estimatedDeliveryTime)';
+    return 'OrderModel(orderId: $orderId, userId: $userId, products: $products, totalAmount: $totalAmount, deliveryDetails: $deliveryDetails, status: $status, orderTime: $orderTime, estimatedDeliveryTime: $estimatedDeliveryTime)';
   }
 
   @override
@@ -274,7 +261,7 @@ class _$OrderModelImpl implements _OrderModel {
         (other.runtimeType == runtimeType &&
             other is _$OrderModelImpl &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
-            (identical(other.user, user) || other.user == user) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.totalAmount, totalAmount) ||
                 other.totalAmount == totalAmount) &&
@@ -292,7 +279,7 @@ class _$OrderModelImpl implements _OrderModel {
   int get hashCode => Object.hash(
       runtimeType,
       orderId,
-      user,
+      userId,
       const DeepCollectionEquality().hash(_products),
       totalAmount,
       deliveryDetails,
@@ -319,7 +306,7 @@ class _$OrderModelImpl implements _OrderModel {
 abstract class _OrderModel implements OrderModel {
   factory _OrderModel(
       {required final String orderId,
-      required final UserModel user,
+      required final String userId,
       required final List<CartProductModel> products,
       required final double totalAmount,
       required final DeliveryModel deliveryDetails,
@@ -333,7 +320,7 @@ abstract class _OrderModel implements OrderModel {
   @override
   String get orderId;
   @override
-  UserModel get user;
+  String get userId;
   @override
   List<CartProductModel> get products;
   @override

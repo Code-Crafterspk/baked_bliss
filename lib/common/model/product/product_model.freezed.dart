@@ -22,17 +22,26 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 mixin _$ProductModel {
   String get productId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  String? get sku => throw _privateConstructorUsedError;
+  String? get discountPercentage => throw _privateConstructorUsedError;
   List<String>? get images => throw _privateConstructorUsedError;
   String get thumbnail => throw _privateConstructorUsedError;
   CategoryModel? get category => throw _privateConstructorUsedError;
   int? get ratingCount => throw _privateConstructorUsedError;
-  double get rating => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  double? get itemRatingScore => throw _privateConstructorUsedError;
+  List<double>? get ratingScore => throw _privateConstructorUsedError;
+  double? get originalPrice => throw _privateConstructorUsedError;
+  bool? get discount => throw _privateConstructorUsedError;
+  bool? get addedToCart => throw _privateConstructorUsedError;
+  double? get displayPrice => throw _privateConstructorUsedError;
+  DateTime? get time => throw _privateConstructorUsedError;
+  String? get sellerId => throw _privateConstructorUsedError;
+  String? get productSells => throw _privateConstructorUsedError;
+  String? get currency => throw _privateConstructorUsedError;
   List<IngredientModel>? get ingredient => throw _privateConstructorUsedError;
   List<VariationModel>? get variations => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get tagline => throw _privateConstructorUsedError;
-  double? get salePrice => throw _privateConstructorUsedError;
   List<PromotionModel>? get promotion => throw _privateConstructorUsedError;
   bool? get isAvailable => throw _privateConstructorUsedError;
 
@@ -55,17 +64,26 @@ abstract class $ProductModelCopyWith<$Res> {
   $Res call(
       {String productId,
       String title,
+      String? sku,
+      String? discountPercentage,
       List<String>? images,
       String thumbnail,
       CategoryModel? category,
       int? ratingCount,
-      double rating,
-      double price,
+      double? itemRatingScore,
+      List<double>? ratingScore,
+      double? originalPrice,
+      bool? discount,
+      bool? addedToCart,
+      double? displayPrice,
+      DateTime? time,
+      String? sellerId,
+      String? productSells,
+      String? currency,
       List<IngredientModel>? ingredient,
       List<VariationModel>? variations,
       String? description,
       String? tagline,
-      double? salePrice,
       List<PromotionModel>? promotion,
       bool? isAvailable});
 
@@ -89,17 +107,26 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
   $Res call({
     Object? productId = null,
     Object? title = null,
+    Object? sku = freezed,
+    Object? discountPercentage = freezed,
     Object? images = freezed,
     Object? thumbnail = null,
     Object? category = freezed,
     Object? ratingCount = freezed,
-    Object? rating = null,
-    Object? price = null,
+    Object? itemRatingScore = freezed,
+    Object? ratingScore = freezed,
+    Object? originalPrice = freezed,
+    Object? discount = freezed,
+    Object? addedToCart = freezed,
+    Object? displayPrice = freezed,
+    Object? time = freezed,
+    Object? sellerId = freezed,
+    Object? productSells = freezed,
+    Object? currency = freezed,
     Object? ingredient = freezed,
     Object? variations = freezed,
     Object? description = freezed,
     Object? tagline = freezed,
-    Object? salePrice = freezed,
     Object? promotion = freezed,
     Object? isAvailable = freezed,
   }) {
@@ -112,6 +139,14 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      sku: freezed == sku
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
+              as String?,
+      discountPercentage: freezed == discountPercentage
+          ? _value.discountPercentage
+          : discountPercentage // ignore: cast_nullable_to_non_nullable
+              as String?,
       images: freezed == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -128,14 +163,46 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
+      itemRatingScore: freezed == itemRatingScore
+          ? _value.itemRatingScore
+          : itemRatingScore // ignore: cast_nullable_to_non_nullable
+              as double?,
+      ratingScore: freezed == ratingScore
+          ? _value.ratingScore
+          : ratingScore // ignore: cast_nullable_to_non_nullable
+              as List<double>?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      addedToCart: freezed == addedToCart
+          ? _value.addedToCart
+          : addedToCart // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      displayPrice: freezed == displayPrice
+          ? _value.displayPrice
+          : displayPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sellerId: freezed == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productSells: freezed == productSells
+          ? _value.productSells
+          : productSells // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currency: freezed == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
       ingredient: freezed == ingredient
           ? _value.ingredient
           : ingredient // ignore: cast_nullable_to_non_nullable
@@ -152,10 +219,6 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
               as String?,
-      salePrice: freezed == salePrice
-          ? _value.salePrice
-          : salePrice // ignore: cast_nullable_to_non_nullable
-              as double?,
       promotion: freezed == promotion
           ? _value.promotion
           : promotion // ignore: cast_nullable_to_non_nullable
@@ -193,17 +256,26 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   $Res call(
       {String productId,
       String title,
+      String? sku,
+      String? discountPercentage,
       List<String>? images,
       String thumbnail,
       CategoryModel? category,
       int? ratingCount,
-      double rating,
-      double price,
+      double? itemRatingScore,
+      List<double>? ratingScore,
+      double? originalPrice,
+      bool? discount,
+      bool? addedToCart,
+      double? displayPrice,
+      DateTime? time,
+      String? sellerId,
+      String? productSells,
+      String? currency,
       List<IngredientModel>? ingredient,
       List<VariationModel>? variations,
       String? description,
       String? tagline,
-      double? salePrice,
       List<PromotionModel>? promotion,
       bool? isAvailable});
 
@@ -226,17 +298,26 @@ class __$$ProductModelImplCopyWithImpl<$Res>
   $Res call({
     Object? productId = null,
     Object? title = null,
+    Object? sku = freezed,
+    Object? discountPercentage = freezed,
     Object? images = freezed,
     Object? thumbnail = null,
     Object? category = freezed,
     Object? ratingCount = freezed,
-    Object? rating = null,
-    Object? price = null,
+    Object? itemRatingScore = freezed,
+    Object? ratingScore = freezed,
+    Object? originalPrice = freezed,
+    Object? discount = freezed,
+    Object? addedToCart = freezed,
+    Object? displayPrice = freezed,
+    Object? time = freezed,
+    Object? sellerId = freezed,
+    Object? productSells = freezed,
+    Object? currency = freezed,
     Object? ingredient = freezed,
     Object? variations = freezed,
     Object? description = freezed,
     Object? tagline = freezed,
-    Object? salePrice = freezed,
     Object? promotion = freezed,
     Object? isAvailable = freezed,
   }) {
@@ -249,6 +330,14 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      sku: freezed == sku
+          ? _value.sku
+          : sku // ignore: cast_nullable_to_non_nullable
+              as String?,
+      discountPercentage: freezed == discountPercentage
+          ? _value.discountPercentage
+          : discountPercentage // ignore: cast_nullable_to_non_nullable
+              as String?,
       images: freezed == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -265,14 +354,46 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.ratingCount
           : ratingCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      rating: null == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
-              as double,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
+      itemRatingScore: freezed == itemRatingScore
+          ? _value.itemRatingScore
+          : itemRatingScore // ignore: cast_nullable_to_non_nullable
+              as double?,
+      ratingScore: freezed == ratingScore
+          ? _value._ratingScore
+          : ratingScore // ignore: cast_nullable_to_non_nullable
+              as List<double>?,
+      originalPrice: freezed == originalPrice
+          ? _value.originalPrice
+          : originalPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      discount: freezed == discount
+          ? _value.discount
+          : discount // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      addedToCart: freezed == addedToCart
+          ? _value.addedToCart
+          : addedToCart // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      displayPrice: freezed == displayPrice
+          ? _value.displayPrice
+          : displayPrice // ignore: cast_nullable_to_non_nullable
+              as double?,
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      sellerId: freezed == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      productSells: freezed == productSells
+          ? _value.productSells
+          : productSells // ignore: cast_nullable_to_non_nullable
+              as String?,
+      currency: freezed == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String?,
       ingredient: freezed == ingredient
           ? _value._ingredient
           : ingredient // ignore: cast_nullable_to_non_nullable
@@ -289,10 +410,6 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.tagline
           : tagline // ignore: cast_nullable_to_non_nullable
               as String?,
-      salePrice: freezed == salePrice
-          ? _value.salePrice
-          : salePrice // ignore: cast_nullable_to_non_nullable
-              as double?,
       promotion: freezed == promotion
           ? _value._promotion
           : promotion // ignore: cast_nullable_to_non_nullable
@@ -311,20 +428,30 @@ class _$ProductModelImpl implements _ProductModel {
   const _$ProductModelImpl(
       {required this.productId,
       required this.title,
+      this.sku,
+      this.discountPercentage,
       final List<String>? images,
       required this.thumbnail,
       this.category,
       this.ratingCount,
-      required this.rating,
-      required this.price,
+      this.itemRatingScore,
+      final List<double>? ratingScore,
+      this.originalPrice,
+      this.discount,
+      this.addedToCart,
+      this.displayPrice,
+      this.time,
+      this.sellerId,
+      this.productSells,
+      this.currency,
       final List<IngredientModel>? ingredient,
       final List<VariationModel>? variations,
       this.description,
       this.tagline,
-      this.salePrice,
       final List<PromotionModel>? promotion,
       this.isAvailable})
       : _images = images,
+        _ratingScore = ratingScore,
         _ingredient = ingredient,
         _variations = variations,
         _promotion = promotion;
@@ -336,6 +463,10 @@ class _$ProductModelImpl implements _ProductModel {
   final String productId;
   @override
   final String title;
+  @override
+  final String? sku;
+  @override
+  final String? discountPercentage;
   final List<String>? _images;
   @override
   List<String>? get images {
@@ -353,9 +484,33 @@ class _$ProductModelImpl implements _ProductModel {
   @override
   final int? ratingCount;
   @override
-  final double rating;
+  final double? itemRatingScore;
+  final List<double>? _ratingScore;
   @override
-  final double price;
+  List<double>? get ratingScore {
+    final value = _ratingScore;
+    if (value == null) return null;
+    if (_ratingScore is EqualUnmodifiableListView) return _ratingScore;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final double? originalPrice;
+  @override
+  final bool? discount;
+  @override
+  final bool? addedToCart;
+  @override
+  final double? displayPrice;
+  @override
+  final DateTime? time;
+  @override
+  final String? sellerId;
+  @override
+  final String? productSells;
+  @override
+  final String? currency;
   final List<IngredientModel>? _ingredient;
   @override
   List<IngredientModel>? get ingredient {
@@ -380,8 +535,6 @@ class _$ProductModelImpl implements _ProductModel {
   final String? description;
   @override
   final String? tagline;
-  @override
-  final double? salePrice;
   final List<PromotionModel>? _promotion;
   @override
   List<PromotionModel>? get promotion {
@@ -397,7 +550,7 @@ class _$ProductModelImpl implements _ProductModel {
 
   @override
   String toString() {
-    return 'ProductModel(productId: $productId, title: $title, images: $images, thumbnail: $thumbnail, category: $category, ratingCount: $ratingCount, rating: $rating, price: $price, ingredient: $ingredient, variations: $variations, description: $description, tagline: $tagline, salePrice: $salePrice, promotion: $promotion, isAvailable: $isAvailable)';
+    return 'ProductModel(productId: $productId, title: $title, sku: $sku, discountPercentage: $discountPercentage, images: $images, thumbnail: $thumbnail, category: $category, ratingCount: $ratingCount, itemRatingScore: $itemRatingScore, ratingScore: $ratingScore, originalPrice: $originalPrice, discount: $discount, addedToCart: $addedToCart, displayPrice: $displayPrice, time: $time, sellerId: $sellerId, productSells: $productSells, currency: $currency, ingredient: $ingredient, variations: $variations, description: $description, tagline: $tagline, promotion: $promotion, isAvailable: $isAvailable)';
   }
 
   @override
@@ -408,6 +561,9 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.sku, sku) || other.sku == sku) &&
+            (identical(other.discountPercentage, discountPercentage) ||
+                other.discountPercentage == discountPercentage) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.thumbnail, thumbnail) ||
                 other.thumbnail == thumbnail) &&
@@ -415,8 +571,25 @@ class _$ProductModelImpl implements _ProductModel {
                 other.category == category) &&
             (identical(other.ratingCount, ratingCount) ||
                 other.ratingCount == ratingCount) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
-            (identical(other.price, price) || other.price == price) &&
+            (identical(other.itemRatingScore, itemRatingScore) ||
+                other.itemRatingScore == itemRatingScore) &&
+            const DeepCollectionEquality()
+                .equals(other._ratingScore, _ratingScore) &&
+            (identical(other.originalPrice, originalPrice) ||
+                other.originalPrice == originalPrice) &&
+            (identical(other.discount, discount) ||
+                other.discount == discount) &&
+            (identical(other.addedToCart, addedToCart) ||
+                other.addedToCart == addedToCart) &&
+            (identical(other.displayPrice, displayPrice) ||
+                other.displayPrice == displayPrice) &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.sellerId, sellerId) ||
+                other.sellerId == sellerId) &&
+            (identical(other.productSells, productSells) ||
+                other.productSells == productSells) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
             const DeepCollectionEquality()
                 .equals(other._ingredient, _ingredient) &&
             const DeepCollectionEquality()
@@ -424,8 +597,6 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.tagline, tagline) || other.tagline == tagline) &&
-            (identical(other.salePrice, salePrice) ||
-                other.salePrice == salePrice) &&
             const DeepCollectionEquality()
                 .equals(other._promotion, _promotion) &&
             (identical(other.isAvailable, isAvailable) ||
@@ -434,23 +605,33 @@ class _$ProductModelImpl implements _ProductModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      productId,
-      title,
-      const DeepCollectionEquality().hash(_images),
-      thumbnail,
-      category,
-      ratingCount,
-      rating,
-      price,
-      const DeepCollectionEquality().hash(_ingredient),
-      const DeepCollectionEquality().hash(_variations),
-      description,
-      tagline,
-      salePrice,
-      const DeepCollectionEquality().hash(_promotion),
-      isAvailable);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        productId,
+        title,
+        sku,
+        discountPercentage,
+        const DeepCollectionEquality().hash(_images),
+        thumbnail,
+        category,
+        ratingCount,
+        itemRatingScore,
+        const DeepCollectionEquality().hash(_ratingScore),
+        originalPrice,
+        discount,
+        addedToCart,
+        displayPrice,
+        time,
+        sellerId,
+        productSells,
+        currency,
+        const DeepCollectionEquality().hash(_ingredient),
+        const DeepCollectionEquality().hash(_variations),
+        description,
+        tagline,
+        const DeepCollectionEquality().hash(_promotion),
+        isAvailable
+      ]);
 
   /// Create a copy of ProductModel
   /// with the given fields replaced by the non-null parameter values.
@@ -472,17 +653,26 @@ abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
       {required final String productId,
       required final String title,
+      final String? sku,
+      final String? discountPercentage,
       final List<String>? images,
       required final String thumbnail,
       final CategoryModel? category,
       final int? ratingCount,
-      required final double rating,
-      required final double price,
+      final double? itemRatingScore,
+      final List<double>? ratingScore,
+      final double? originalPrice,
+      final bool? discount,
+      final bool? addedToCart,
+      final double? displayPrice,
+      final DateTime? time,
+      final String? sellerId,
+      final String? productSells,
+      final String? currency,
       final List<IngredientModel>? ingredient,
       final List<VariationModel>? variations,
       final String? description,
       final String? tagline,
-      final double? salePrice,
       final List<PromotionModel>? promotion,
       final bool? isAvailable}) = _$ProductModelImpl;
 
@@ -494,6 +684,10 @@ abstract class _ProductModel implements ProductModel {
   @override
   String get title;
   @override
+  String? get sku;
+  @override
+  String? get discountPercentage;
+  @override
   List<String>? get images;
   @override
   String get thumbnail;
@@ -502,9 +696,25 @@ abstract class _ProductModel implements ProductModel {
   @override
   int? get ratingCount;
   @override
-  double get rating;
+  double? get itemRatingScore;
   @override
-  double get price;
+  List<double>? get ratingScore;
+  @override
+  double? get originalPrice;
+  @override
+  bool? get discount;
+  @override
+  bool? get addedToCart;
+  @override
+  double? get displayPrice;
+  @override
+  DateTime? get time;
+  @override
+  String? get sellerId;
+  @override
+  String? get productSells;
+  @override
+  String? get currency;
   @override
   List<IngredientModel>? get ingredient;
   @override
@@ -513,8 +723,6 @@ abstract class _ProductModel implements ProductModel {
   String? get description;
   @override
   String? get tagline;
-  @override
-  double? get salePrice;
   @override
   List<PromotionModel>? get promotion;
   @override

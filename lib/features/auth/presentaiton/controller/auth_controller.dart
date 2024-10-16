@@ -59,37 +59,26 @@ class AuthController extends GetxController {
 
   Future<void> googleLogin() async {
     _showLoading();
-    await Future.delayed(const Duration(seconds: 2));
-    await _showSuccess();
-    await Future.delayed(const Duration(seconds: 5));
-    log('google login');
-    // final result = await _googleLogin(NoParams());
-    // log('google login result');
-    // print(result);
-    // log(result.toString());
-    // result.fold(
-    //   (failure) {
-    //     if (kDebugMode) {
-    //       print(failure.message);
-    //     }
-    //   },
-    //   (authResponse) async {
-    //     await _showSuccess();
-    //     setAuthenticated(true);
-    //     Get.toNamed(AppRoutes.navigation);
-    //   },
-    // );
+    final result = await _googleLogin(NoParams());
+    await result.fold(
+      (failure) async {
+        _showError(failure.message);
+      },
+      (authResponse) async {
+        await _showSuccess();
+        setAuthenticated(true);
+        Get.toNamed(AppRoutes.navigation);
+      },
+    );
     _hideLoading();
   }
 
   Future<void> facebookLogin() async {
     _showLoading();
     final result = await _facebookLogin(NoParams());
-    result.fold(
+    await result.fold(
       (failure) {
-        if (kDebugMode) {
-          print(failure.message);
-        }
+        _showError(failure.message);
       },
       (authResponse) async {
         await _showSuccess();
@@ -108,13 +97,9 @@ class AuthController extends GetxController {
 
     final result =
         await _emailLogin(EmailLoginParams(email: email, password: password));
-    result.fold(
+    await result.fold(
       (failure) {
-        AppHelper.showCustomSnackBar(
-          Get.overlayContext!,
-          failure.message,
-          SnackBarType.error,
-        );
+        _showError(failure.message);
       },
       (authResponse) async {
         await _showSuccess();
@@ -140,13 +125,9 @@ class AuthController extends GetxController {
         phone: phoneNumber,
       ),
     );
-    result.fold(
+    await result.fold(
       (failure) {
-        AppHelper.showCustomSnackBar(
-          Get.overlayContext!,
-          failure.message,
-          SnackBarType.error,
-        );
+        _showError(failure.message);
       },
       (authResponse) async {
         await _showSuccess();
@@ -163,9 +144,7 @@ class AuthController extends GetxController {
     final result = await _signOut(NoParams());
     result.fold(
       (failure) {
-        if (kDebugMode) {
-          print(failure.message);
-        }
+        _showError(failure.message);
       },
       (_) {
         setAuthenticated(false);
@@ -195,5 +174,13 @@ class AuthController extends GetxController {
         centerWidget:
             const Icon(Icons.check_circle, color: Colors.green, size: 50));
     await Future.delayed(const Duration(seconds: 2));
+  }
+
+  void _showError(String message) async {
+    AppHelper.showCustomSnackBar(
+      Get.overlayContext!,
+      message,
+      SnackBarType.error,
+    );
   }
 }

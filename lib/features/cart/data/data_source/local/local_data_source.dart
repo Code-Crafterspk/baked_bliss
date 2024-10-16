@@ -30,7 +30,7 @@ class CartLocalDataSourceImp implements CartDataSource {
   }
 
   @override
-  Future<void> removeProductFromCart(CartProductModel cartProduct,
+  Future<void> removeProductFromCart(List<CartProductModel> cartProduct,
       {required String userId}) async {
     await handleLocalDatabaseException(() async {
       await _db.removeProductFromCart(cartProduct);
@@ -48,6 +48,14 @@ class CartLocalDataSourceImp implements CartDataSource {
   Future<void> addCart(CartModel cart, {required String userId}) async {
     await handleLocalDatabaseException(() async {
       await _db.addCart(cart);
+    });
+  }
+
+  @override
+  Future<int> getCartCount(String userId) async {
+    return await handleLocalDatabaseException(() async {
+      final cart = await _db.getCart();
+      return cart.items.length;
     });
   }
 }

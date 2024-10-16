@@ -128,21 +128,6 @@ class ProductRemoteDataSourceImpl implements ProductDataSource {
   }
 
   @override
-  Future<ApiResponse<CategoryModel>> getCategories() async {
-    return await handleApiException(() async {
-      final url = '${baseUrl}categories';
-      final response = await _client.get(Uri.parse(url));
-      final data = handleApiResponse(response);
-      final jsonData = jsonDecode(data);
-
-      return ApiResponse(
-        data: CategoryModel.fromJson(jsonData['data']),
-        pagination: Pagination.fromJson(jsonData['pagination']),
-      );
-    });
-  }
-
-  @override
   Future<ProductModel> getProductDetail(String productId) async {
     return await handleApiException(() async {
       final url = '${baseUrl}products/$productId';

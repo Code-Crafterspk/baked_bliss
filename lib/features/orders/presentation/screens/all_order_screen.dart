@@ -6,8 +6,8 @@ import 'package:baked_bliss/utils/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AllOrderScreen extends StatelessWidget {
-  const AllOrderScreen({super.key});
+class MyOrderScreen extends StatelessWidget {
+  const MyOrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

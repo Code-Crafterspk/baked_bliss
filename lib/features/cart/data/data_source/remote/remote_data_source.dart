@@ -56,7 +56,7 @@ class CartRemoteDataSourceImp implements CartDataSource {
   }
 
   @override
-  Future<void> removeProductFromCart(CartProductModel cartProduct,
+  Future<void> removeProductFromCart(List<CartProductModel> cartProduct,
       {required String userId}) async {
     handleApiException(() async {
       final user = _auth.currentUser;
@@ -65,9 +65,10 @@ class CartRemoteDataSourceImp implements CartDataSource {
             errorCode: 'user-not-found', message: 'User not found');
       }
       final url = p.join(baseUrl, 'cart/remove');
+      final body = jsonEncode(cartProduct.map((e) => e.cartId).toList());
       final response = await _client.post(
         Uri.parse('$url?userId=$userId'),
-        body: jsonEncode(cartProduct.toJson()),
+        body: jsonEncode(body),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ${await user.getIdToken()}',
@@ -96,6 +97,21 @@ class CartRemoteDataSourceImp implements CartDataSource {
         },
       );
       handleApiResponse(response);
+    });
+  }
+
+  @override
+  Future<int> getCartCount(String userId) async {
+    return handleApiException(() async {
+      final url = p.join(baseUrl, 'cart/count');
+      final response = await _client.get(
+        Uri.parse('$url?userId=$userId'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      );
+      final data = jsonDecode(response.body);
+      return data['count'];
     });
   }
 }

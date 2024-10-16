@@ -4,6 +4,7 @@ import 'package:baked_bliss/features/cart/data/repository/cart_repository_imp.da
 import 'package:baked_bliss/features/cart/domain/repository/cart_repository.dart';
 import 'package:baked_bliss/features/cart/domain/usecases/add_to_cart.dart';
 import 'package:baked_bliss/features/cart/domain/usecases/get_cart.dart';
+import 'package:baked_bliss/features/cart/domain/usecases/get_cart_count.dart';
 import 'package:baked_bliss/features/cart/domain/usecases/remove_from_cart.dart';
 import 'package:baked_bliss/features/cart/domain/usecases/update_cart.dart';
 import 'package:baked_bliss/features/cart/presentation/controller/cart_controller.dart';
@@ -29,8 +30,10 @@ class CartBinding extends Bindings {
       ..put(RemoveFromCartUseCase(Get.find()))
       ..put(GetCartUseCase(Get.find()))
       ..put(UpdateCartUseCase(Get.find()))
+      ..put(GetCartCountUseCase(Get.find()))
       ..put<CartController>(
         CartController(
+          Get.find(),
           Get.find(),
           Get.find(),
           Get.find(),

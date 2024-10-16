@@ -36,6 +36,7 @@ class AuthLocalDataSourceImp implements AuthLocalDataSource {
   @override
   Future<void> createUser(UserModel user) async {
     return await _handleException(() async {
+      await _db.clearUserData();
       await _db.createUser(user);
     });
   }

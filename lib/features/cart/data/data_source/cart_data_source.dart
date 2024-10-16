@@ -5,8 +5,9 @@ abstract interface class CartDataSource {
   Future<CartModel> getCart(String userId);
   Future<void> addProductToCart(CartProductModel cartProduct,
       {required String userId});
-  Future<void> removeProductFromCart(CartProductModel cartProduct,
+  Future<void> removeProductFromCart(List<CartProductModel> cartProduct,
       {required String userId});
   Future<void> updateProductInCart(CartProductModel cartProduct,
       {required String userId});
+  Future<int> getCartCount(String userId);
 }

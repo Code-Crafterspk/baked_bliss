@@ -33,7 +33,7 @@ class UserController extends GetxController {
   RxBool get isLoadingUser => _isLoadingUser;
   RxBool get isLoadingImage => _isUpdatingImage;
 
-  Rx<UserModel?>? _user;
+  Rx<UserModel?> _user = Rxn<UserModel?>();
   final RxList<AddressModel> _addresses = <AddressModel>[].obs;
 
   Rx<UserModel?>? get user => _user;
@@ -60,7 +60,7 @@ class UserController extends GetxController {
       (failure) => AppHelper.showCustomSnackBar(
           Get.context!, failure.message, SnackBarType.error),
       (_) {
-        _user!.value = user;
+        _user.value = user;
         AppHelper.showCustomSnackBar(
             Get.context!, 'User updated successfully', SnackBarType.success);
       },
@@ -86,8 +86,7 @@ class UserController extends GetxController {
       (failure) => AppHelper.showCustomSnackBar(
           Get.context!, failure.message, SnackBarType.error),
       (_) {
-        _user!.value =
-            user!.value!.copyWith(addresses: [address, ...addresses]);
+        _user.value = user!.value!.copyWith(addresses: [address, ...addresses]);
         AppHelper.showCustomSnackBar(
             Get.context!, 'Address updated successfully', SnackBarType.success);
       },
@@ -113,8 +112,7 @@ class UserController extends GetxController {
       (failure) => AppHelper.showCustomSnackBar(
           Get.context!, failure.message, SnackBarType.error),
       (_) {
-        _user!.value =
-            user!.value!.copyWith(addresses: [address, ...addresses]);
+        _user.value = user!.value!.copyWith(addresses: [address, ...addresses]);
         AppHelper.showCustomSnackBar(
             Get.context!, 'Address added successfully', SnackBarType.success);
       },
@@ -131,7 +129,7 @@ class UserController extends GetxController {
           Get.context!, failure.message, SnackBarType.error),
       (_) {
         _addresses.removeWhere((a) => a.addressId == address.addressId);
-        _user!.value = user!.value!.copyWith(addresses: addresses);
+        _user.value = user!.value!.copyWith(addresses: addresses);
         AppHelper.showCustomSnackBar(
             Get.context!, 'Address removed successfully', SnackBarType.success);
       },

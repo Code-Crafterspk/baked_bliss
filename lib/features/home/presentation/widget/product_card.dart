@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
                         fontSize: 14,
                       )),
                   const SizedBox(height: 5),
-                  Text('\$${product.price}',
+                  Text('\$${product.originalPrice}',
                       style: const TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 14,
@@ -56,7 +56,7 @@ class ProductCard extends StatelessWidget {
                   children: [
                     const Icon(Icons.star, color: AppColors.ratingBg, size: 15),
                     Text(
-                      '${product.rating}',
+                      '${product.itemRatingScore}',
                       style: const TextStyle(
                           color: AppColors.ratingText, fontSize: 11),
                     )

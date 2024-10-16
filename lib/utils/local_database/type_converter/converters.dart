@@ -141,3 +141,20 @@ class DeliveryConverter extends TypeConverter<DeliveryModel, String> {
     return jsonEncode(value.toJson());
   }
 }
+
+class ListOfCartProductConverter
+    extends TypeConverter<List<CartProductModel>, String> {
+  const ListOfCartProductConverter();
+
+  @override
+  List<CartProductModel> fromSql(String fromDb) {
+    return jsonDecode(fromDb)
+        .map<CartProductModel>((e) => CartProductModel.fromJson(e))
+        .toList();
+  }
+
+  @override
+  String toSql(List<CartProductModel> value) {
+    return jsonEncode(value.map((e) => e.toJson()).toList());
+  }
+}

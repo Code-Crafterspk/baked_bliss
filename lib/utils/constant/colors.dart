@@ -42,4 +42,5 @@ abstract class AppColors {
   static const startOrderingButtonColor = Color.fromRGBO(255, 200, 58, 1);
   static var shimmerBaseColor = Colors.grey.shade300;
   static var shimmerHighlightColor = Colors.grey.shade100;
+  static var ratingLineBg = const Color.fromRGBO(0, 109, 96, 1);
 }

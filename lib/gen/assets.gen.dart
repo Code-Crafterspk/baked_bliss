@@ -73,6 +73,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
 
+  /// File path: assets/icons/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/icons/icon.png');
+
   /// File path: assets/icons/info.png
   AssetGenImage get info => const AssetGenImage('assets/icons/info.png');
 
@@ -179,6 +182,7 @@ class $AssetsIconsGen {
         feedback,
         filter,
         google,
+        icon,
         info,
         instagram,
         instagramNegative,

@@ -56,4 +56,8 @@ abstract class AppConstants {
   static const String noReviewsYet = 'No Reviews Yet';
   static const String feedback = 'Feedback';
   static const String order = 'Orders';
+  static const String offers = 'Offers';
+  static const String logOut = 'Log Out';
+  static const String reviewDetails = 'Review Details';
+  static const String writeReview = 'Write Review';
 }

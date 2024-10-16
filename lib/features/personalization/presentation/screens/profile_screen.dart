@@ -19,28 +19,33 @@ class ProfileScreen extends StatelessWidget {
       color: Colors.white,
     );
     final controller = Get.find<UserController>();
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.profileScreenScaffoldBg,
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          ProfileBackground(),
+          const ProfileBackground(),
           SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 70),
-                ProfileImage(
+                const SizedBox(height: 70),
+                const ProfileImage(
                   height: 95,
                   width: 95,
                 ),
-                SizedBox(height: 10),
-                // Obx(
-                //   () => Text(
-                //     controller.user?.value?.fullName ?? '',
-                //     style: interFont,
-                //   ),
-                // ),
-                Padding(
+                const SizedBox(height: 10),
+                Obx(
+                  () {
+                    if (controller.user?.value == null) {
+                      return const SizedBox();
+                    }
+                    return Text(
+                      controller.user!.value!.fullName,
+                      style: interFont,
+                    );
+                  },
+                ),
+                const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                     child: AccountSection()),
               ],

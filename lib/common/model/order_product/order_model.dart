@@ -11,7 +11,7 @@ part 'order_model.g.dart';
 class OrderModel with _$OrderModel {
   factory OrderModel({
     required String orderId,
-    required UserModel user,
+    required String userId,
     required List<CartProductModel> products,
     required double totalAmount,
     required DeliveryModel deliveryDetails,

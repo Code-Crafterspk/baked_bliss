@@ -51,7 +51,7 @@ class SignUpForm extends HookWidget {
               () => SignUpInputField(
                 controller: passwordController,
                 validator: AppHelper.passwordValidator,
-                obscureText: controller.showPasswordSignup,
+                obscureText: !controller.showPasswordSignup,
                 isPassword: true,
               ),
             ),

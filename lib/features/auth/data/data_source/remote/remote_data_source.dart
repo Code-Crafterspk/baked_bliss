@@ -106,11 +106,14 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
     required String password,
   }) async {
     return _handleException(() async {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
+      final userId = userCredential.user!.uid;
+
       final res = await _client.post(
         Uri.parse(p.join(baseApi, 'login')),
         body: jsonEncode({
+          'userId': userId,
           'email': email,
           'pushToken': _fcmNotification.getToken(),
         }),
@@ -171,13 +174,14 @@ class AuthRemoteDataSourceImp implements AuthRemoteDataSource {
       final firebaseCredential =
           await _firebaseAuth.signInWithCredential(credential);
       final firebaseUser = firebaseCredential.user!;
-      await _socialSignIn(UserModel(
+      final user = UserModel(
         email: firebaseUser.email,
         fullName: firebaseUser.displayName ?? '',
         userId: firebaseUser.uid,
         imageUrl: firebaseUser.photoURL,
         pushToken: _fcmNotification.getToken(),
-      ));
+      );
+      await _socialSignIn(user);
       return _response(AuthMode.google);
     });
   }

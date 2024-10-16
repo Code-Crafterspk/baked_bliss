@@ -8,9 +8,10 @@ abstract interface class CartRepository {
   Future<Either<Failure, void>> addProductToCart(CartProductModel cartProduct,
       {required String userId});
   Future<Either<Failure, void>> removeProductFromCart(
-      CartProductModel cartProduct,
+      List<CartProductModel> cartProduct,
       {required String userId});
   Future<Either<Failure, void>> updateProductInCart(
       CartProductModel cartProduct,
       {required String userId});
+  Future<Either<Failure, int>> getCartCount(String userId);
 }

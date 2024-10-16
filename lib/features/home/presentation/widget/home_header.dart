@@ -36,7 +36,13 @@ class HomeHeader extends StatelessWidget {
                 RoundedButton(
                     icon: AssetsIcons.menu,
                     onPressed: () {
-                      Scaffold.of(context).openDrawer();
+                      final isDrawerOpen = Scaffold.of(context).isDrawerOpen;
+
+                      if (isDrawerOpen) {
+                        Scaffold.of(context).closeDrawer();
+                      } else {
+                        Scaffold.of(context).openDrawer();
+                      }
                     }),
                 RoundedButton(icon: AssetsIcons.notification, onPressed: () {}),
               ],

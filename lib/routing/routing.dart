@@ -1,16 +1,20 @@
-import 'package:baked_bliss/features/auth/presentaiton/bindings/auth_binding.dart';
 import 'package:baked_bliss/features/auth/presentaiton/screen/login_screen.dart';
 import 'package:baked_bliss/features/auth/presentaiton/screen/signup_screen.dart';
 import 'package:baked_bliss/features/auth/presentaiton/screen/welcome_screen.dart';
 import 'package:baked_bliss/features/cart/presentation/bindings/cart_bindings.dart';
 import 'package:baked_bliss/features/cart/presentation/screens/cart_screen.dart';
 import 'package:baked_bliss/features/home/presentation/screens/home_screen.dart';
+import 'package:baked_bliss/features/offers&promo/presentation/screens/my_offers_screen.dart';
+import 'package:baked_bliss/features/orders/presentation/bindings/order_bindings.dart';
+import 'package:baked_bliss/features/orders/presentation/screens/all_order_screen.dart';
 import 'package:baked_bliss/features/orders/presentation/screens/orders_tracking_screen.dart';
 import 'package:baked_bliss/features/payment/presentation/screens/check_out_screen.dart';
 import 'package:baked_bliss/features/payment/presentation/screens/payment_success_screen.dart';
+import 'package:baked_bliss/features/personalization/presentation/screens/contact_us_screen.dart';
 import 'package:baked_bliss/features/personalization/presentation/screens/profile_screen.dart';
 import 'package:baked_bliss/features/personalization/presentation/screens/update_profile_screen.dart';
 import 'package:baked_bliss/features/product_detail/presentation/screens/product_detail_screen.dart';
+import 'package:baked_bliss/features/review/presentation/screens/my_reviews_screen.dart';
 import 'package:baked_bliss/features/search/presentation/screens/search_screen.dart';
 import 'package:baked_bliss/features/shared/presentation/binding/navigation_binding.dart';
 import 'package:baked_bliss/features/shared/presentation/binding/user_binding.dart';
@@ -47,8 +51,8 @@ abstract class Routing {
         UserBinding(),
         // ProductBinding(),
         // CategoryBinding(),
-        CartBinding()
-        // OrderBinding(),
+        CartBinding(),
+        OrderBinding(),
       ],
     ),
     GetPage(
@@ -86,6 +90,26 @@ abstract class Routing {
     GetPage(
       name: AppRoutes.orderTracking,
       page: () => const OrderTrackingScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.myOrders,
+      page: () => const MyOrderScreen(),
+    ),
+    // GetPage(
+    //   name: AppRoutes.orderDetail,
+    //   page: () => const OrderDetailScreen(),
+    // ),
+    GetPage(
+      name: AppRoutes.myReviews,
+      page: () => const MyReviewScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.contactUs,
+      page: () => const ContactUsScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.myOffers,
+      page: () => const MyOffersScreen(),
     ),
   ];
 }

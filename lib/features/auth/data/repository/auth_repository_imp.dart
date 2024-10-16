@@ -1,6 +1,5 @@
 import 'package:baked_bliss/common/exceptions/server_exception.dart';
 import 'package:baked_bliss/common/failure/failure.dart';
-import 'package:baked_bliss/common/model/user/user_model.dart';
 import 'package:baked_bliss/features/auth/data/data_source/local/local_data_source.dart';
 import 'package:baked_bliss/features/auth/data/data_source/remote/remote_data_source.dart';
 import 'package:baked_bliss/features/auth/domain/model/auth_response.dart';
@@ -50,12 +49,6 @@ class AuthRepositoryImp implements AuthRepository {
     return _handleException(() async {
       final res = await _remoteDataSource.signInWithEmail(
           email: email, password: password);
-      await _localDataSource.createUser(UserModel(
-        userId: 'dsfkjdkj',
-        fullName: 'Sujan Bimali',
-        email: email,
-        phoneNo: '9841234567',
-      ));
       return res;
     });
   }
@@ -64,12 +57,6 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Either<Failure, AuthResponse>> signInWithFacebook() async {
     return await _handleException(() async {
       final res = await _remoteDataSource.signInWithFacebook();
-      await _localDataSource.createUser(const UserModel(
-        userId: 'dsfkjdkj',
-        fullName: 'Sujan Bimali',
-        email: 'sujanbimali999@gmail.com',
-        phoneNo: '9841234567',
-      ));
       return res;
     });
   }
@@ -78,12 +65,6 @@ class AuthRepositoryImp implements AuthRepository {
   Future<Either<Failure, AuthResponse>> signInWithGoogle() async {
     return _handleException(() async {
       final res = await _remoteDataSource.signInWithGoogle();
-      await _localDataSource.createUser(const UserModel(
-        userId: 'dsfkjdkj',
-        fullName: 'Sujan Bimali',
-        email: 'sujanbimali999@gmail.com',
-        phoneNo: '9841234567',
-      ));
       return res;
     });
   }
@@ -110,12 +91,6 @@ class AuthRepositoryImp implements AuthRepository {
         fullName: fullName,
         phoneNumber: phoneNumber,
       );
-      await _localDataSource.createUser(const UserModel(
-        userId: 'dsfkjdkj',
-        fullName: 'Sujan Bimali',
-        email: 'sujanbimali999@gmail.com',
-        phoneNo: '9841234567',
-      ));
       return res;
     });
   }

@@ -29,7 +29,7 @@ class UpdateProfileScreen extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
-                  const ProfileBackground(),
+                  const ProfileBackground(showBackBtn: true),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Column(

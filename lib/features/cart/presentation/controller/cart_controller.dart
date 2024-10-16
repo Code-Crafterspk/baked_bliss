@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:baked_bliss/features/cart/domain/usecases/get_cart_count.dart';
 import 'package:baked_bliss/features/shared/presentation/controller/user_controller.dart';
 import 'package:get/get.dart';
 
@@ -14,12 +15,14 @@ class CartController extends GetxController {
   final GetCartUseCase _getCartUseCase;
   final UpdateCartUseCase _updateCartUseCase;
   final UserController _userController;
+  final GetCartCountUseCase _getCartCountUseCase;
   CartController(
     this._addToCartUseCase,
     this._removeFromCartUseCase,
     this._getCartUseCase,
     this._updateCartUseCase,
     this._userController,
+    this._getCartCountUseCase,
   );
 
   final cartProduct = <CartProductModel>[].obs;

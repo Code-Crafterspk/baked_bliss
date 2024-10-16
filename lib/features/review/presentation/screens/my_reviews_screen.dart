@@ -6,8 +6,8 @@ import 'package:baked_bliss/utils/constant/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyFeedBackScreen extends StatelessWidget {
-  const MyFeedBackScreen({super.key});
+class MyReviewScreen extends StatelessWidget {
+  const MyReviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

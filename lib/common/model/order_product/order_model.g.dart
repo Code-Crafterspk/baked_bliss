@@ -9,7 +9,7 @@ part of 'order_model.dart';
 _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
     _$OrderModelImpl(
       orderId: json['orderId'] as String,
-      user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      userId: json['userId'] as String,
       products: (json['products'] as List<dynamic>)
           .map((e) => CartProductModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,7 +25,7 @@ _$OrderModelImpl _$$OrderModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$OrderModelImplToJson(_$OrderModelImpl instance) =>
     <String, dynamic>{
       'orderId': instance.orderId,
-      'user': instance.user,
+      'userId': instance.userId,
       'products': instance.products,
       'totalAmount': instance.totalAmount,
       'deliveryDetails': instance.deliveryDetails,

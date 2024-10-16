@@ -24,11 +24,6 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: Icon(Icons.menu)),
             const HomeHeader(),
             const SizedBox(height: 5),
             Padding(
@@ -63,7 +58,7 @@ final productList = [
       productId: '1',
       title: 'Egg Toast',
       thumbnail: AssetsImages.eggToast,
-      price: 10.40,
+      originalPrice: 10.40,
       category: const CategoryModel(
         id: 1,
         name: 'Breakfast',
@@ -71,7 +66,7 @@ final productList = [
       ),
       description: 'Egg toast is a simple breakfast recipe',
       ratingCount: 36,
-      rating: 4.5,
+      itemRatingScore: 4.5,
       ingredient: [
         const IngredientModel(
           id: 1,
@@ -103,7 +98,7 @@ final productList = [
     productId: '2',
     title: 'Power Bowl',
     thumbnail: AssetsImages.powerBowl,
-    price: 14.10,
+    originalPrice: 14.10,
     category: const CategoryModel(
       id: 2,
       name: 'Lunch',
@@ -111,7 +106,7 @@ final productList = [
     ),
     description: 'Power bowl is a healthy lunch recipe',
     ratingCount: 36,
-    rating: 4.8,
+    itemRatingScore: 4.8,
     ingredient: [
       const IngredientModel(
         id: 2,
@@ -138,7 +133,7 @@ final productList = [
     productId: '3',
     title: 'Curry Salmon',
     thumbnail: AssetsImages.currySalmom,
-    price: 16.40,
+    originalPrice: 16.40,
     category: const CategoryModel(
       id: 3,
       name: 'Dinner',
@@ -146,7 +141,7 @@ final productList = [
     ),
     description: 'Curry salmon is a delicious dinner recipe',
     ratingCount: 36,
-    rating: 4.8,
+    itemRatingScore: 4.8,
     ingredient: [
       const IngredientModel(
         id: 1,

@@ -16,7 +16,6 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FcmNotification.init();
   NetworkInfo.init(Connectivity());
-
   await NotificationService.init();
   runApp(const MyApp());
 }

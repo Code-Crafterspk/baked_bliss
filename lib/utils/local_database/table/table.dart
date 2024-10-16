@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:baked_bliss/common/model/cart/cart_product_model.dart';
+import 'package:baked_bliss/common/model/order_product/order_model.dart';
+import 'package:baked_bliss/utils/enums/enums.dart';
 import 'package:baked_bliss/utils/local_database/type_converter/converters.dart';
 import 'package:drift/drift.dart';
 
@@ -124,4 +129,29 @@ class PromotionTable extends Table {
 
   @override
   Set<Column> get primaryKey => {promotionId};
+}
+
+@DataClassName('OrderEntity')
+class OrderTable extends Table {
+  TextColumn get orderId => text()();
+  TextColumn get userId => text()();
+  TextColumn get products => text().map(const ListOfCartProductConverter())();
+  RealColumn get totalAmount => real()();
+  TextColumn get deliveryDetails => text().map(const DeliveryConverter())();
+  TextColumn get status =>
+      text().map(const EnumNameConverter(OrderStatus.values))();
+  DateTimeColumn get orderTime => dateTime()();
+  DateTimeColumn get updatedAt => dateTime()();
+  DateTimeColumn get estimatedDeliveryTime => dateTime()();
+  @override
+  Set<Column> get primaryKey => {orderId};
+}
+
+@DataClassName('CategoryEntity')
+class CategoryTable extends Table {
+  IntColumn get categoryId => integer()();
+  TextColumn get name => text()();
+  TextColumn get image => text()();
+  @override
+  Set<Column> get primaryKey => {categoryId};
 }

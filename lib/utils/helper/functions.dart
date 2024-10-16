@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:baked_bliss/common/exceptions/database_exception.dart';
 import 'package:baked_bliss/common/exceptions/server_exception.dart';
 import 'package:http/http.dart';
 

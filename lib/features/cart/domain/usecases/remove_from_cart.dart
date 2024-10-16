@@ -16,7 +16,7 @@ class RemoveFromCartUseCase implements UseCase<void, RemoveFromCartParm> {
 }
 
 class RemoveFromCartParm {
-  final CartProductModel cartProduct;
+  final List<CartProductModel> cartProduct;
   final String userId;
 
   RemoveFromCartParm({
